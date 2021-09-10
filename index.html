@@ -1,40 +1,147 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Custom Views for the Rest of Us</title>
+	<title>Custom Views for the Rest of Us</title>
 
-		<link rel="stylesheet" href="reveal.js/dist/reset.css">
-		<link rel="stylesheet" href="reveal.js/dist/reveal.css">
-		<link rel="stylesheet" href="reveal.js/dist/theme/moon.css">
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="reveal.js/dist/theme/moon.css">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="themes/custom.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
+	<style>
+		.hl-block {
+			box-shadow: 0 0 7px #000000A0 !important;
+			border-radius: 5px !important;
+			padding: 10px !important;
+			background: #00495C;
+			color: #EEE8D5;
+		}
+
+		.reveal pre code {
+			max-height: 600px;
+			box-shadow: 0 0 7px #000000A0 !important;
+			border-radius: 5px !important;
+			padding: 10px !important;
+			background: #00495C;
+		}
+
+		.reveal pre {
+			box-shadow: none;
+			width: fit-content;
+			height: fit-content;
+		}
+
+		.huge-text {
+			font-size: 100px;
+		}
+
+		.no-margin {
+			margin: 0 !important;
+		}
+
+		.no-margin-bottom {
+			margin-bottom: 0 !important;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4,
+		.reveal h5,
+		.reveal h6 {
+			text-transform: none;
+			font-family: 'Roboto Slab', serif;
+		}
+
+		.reveal h6 {
+			font-size: 35px;
+		}
+
+	</style>
+
+</head>
+<body>
+
+<!--
+Thoughts:
+    - Definitely need to disambiguate better between views, adapters, and factories. Need to point out that views are
+      ready to be customized, but adapters are not.
+    - Some more explanation of the planet simulator would be helpful.
+    - A good reason to use sentinels: it signals that you have C++20 requirements. Especially if you wrote a proxy
+      iterator, a sentinel will ensure that doesn't work with old generic code that won't properly handle proxies.
+    - std::cout on the first slide should use a C++20 printing technique...
+    - Mention transform_reduce when showing the summing of gravitational forces.
+    - GravitationalRange concept is probably redundant; std::ranges::range_value_t likely already requires
+      std::ranges::range.
+    - Dramatically simplify simulation code. Use pseudocode for everything except the inner-most algorithm.
+    - Uh, you don't have to calculate the whole matrix of forces, just the top triangle. Equal and opposite forces.
+      So the solar system is not a good example of a need for the whole matrix minus the diagonal... I guess you could
+      calculate all the forces, but then you still need to look up pairs in that table. So you need the whole matrix for
+      the lookup stage.
+-->
+
+	<div class="reveal">
+		<div class="slides">
+
+			<section>
+				<div class="hl-block">
+					<h2 style="margin-top: 30px">Custom Views<br/>for the Rest of Us</h2>
+					—
+					<h3 class="no-margin-bottom">Jacob Rice</h3>
+					<h6 class="no-margin">jacob@rice.systems</h6>
+					<img src="images/keysight-logo.png" width="300" style="margin-top: 30px"
+						 alt="Keysight Technologies, Inc." />
+				</div>
+			</section>
+
+			<section data-markdown="introduction.md"></section>
+			<section data-markdown="common-reference.md"></section>
+
 		</div>
+	</div>
 
-		<script src="reveal.js/dist/reveal.js"></script>
-		<script src="reveal.js/plugin/notes/notes.js"></script>
-		<script src="reveal.js/plugin/markdown/markdown.js"></script>
-		<script src="reveal.js/plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+	<script src="reveal.js/dist/reveal.js"></script>
+	<script src="reveal.js/plugin/notes/notes.js"></script>
+	<script src="reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="reveal.js/plugin/highlight/highlight.js"></script>
+	<script src="reveal.js/plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true, // For debug
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+			mouseWheel: true,
+			history: true,
+			transition: 'none',
+			transitionSpeed: 'fast',
+			slideNumber: true,
+			width: 1280,
+			height: 720,
+			markdown: {
+				smartypants: true,
+			},
+
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+			},
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+		});
+	</script>
+</body>
 </html>
