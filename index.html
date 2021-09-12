@@ -26,12 +26,26 @@
 			color: #EEE8D5;
 		}
 
-		.reveal pre code {
+		/* The first code block, which isn't a fragment, gets a shadow */
+		.reveal pre code:not(.fragment) {
 			max-height: 600px;
 			box-shadow: 0 0 7px #000000A0 !important;
 			border-radius: 5px !important;
 			padding: 10px !important;
 			background: #00495C;
+		}
+
+		/* Code fragments (i.e. the highlighted versions of a code block) don't get a shadow */
+		.reveal pre code.fragment {
+			max-height: 600px;
+			border-radius: 5px !important;
+			padding: 10px !important;
+			background: #00495C;
+		}
+
+		/* Highlighted code lines also have shadow behind them */
+		.highlight-line {
+			text-shadow: 0 0 7px #00000080 !important;
 		}
 
 		.reveal pre {
@@ -42,6 +56,19 @@
 
 		.huge-text {
 			font-size: 100px;
+		}
+
+		.pretty-big-text {
+			font-size: 80px;
+		}
+
+		.medium-text {
+			font-size: 65px;
+		}
+
+		.left-align {
+			text-align: left;
+			padding: 40px !important;
 		}
 
 		.no-margin {
@@ -82,11 +109,9 @@ Thoughts:
     - Mention transform_reduce when showing the summing of gravitational forces.
     - GravitationalRange concept is probably redundant; std::ranges::range_value_t likely already requires
       std::ranges::range.
-    - Dramatically simplify simulation code. Use pseudocode for everything except the inner-most algorithm.
-    - Uh, you don't have to calculate the whole matrix of forces, just the top triangle. Equal and opposite forces.
-      So the solar system is not a good example of a need for the whole matrix minus the diagonal... I guess you could
-      calculate all the forces, but then you still need to look up pairs in that table. So you need the whole matrix for
-      the lookup stage.
+    - Another solution instead of cartesian_product_view might be by using drop_view to just drop thisBody on each loop.
+      I should mention that, even though I won't use it.
+    - Another disambiguation: view vs adaptor?
 -->
 
 	<div class="reveal">
@@ -103,7 +128,11 @@ Thoughts:
 				</div>
 			</section>
 
-			<section data-markdown="introduction.md"></section>
+			<section data-markdown="solar-introduction.md"></section>
+			<section data-markdown="definitions.md"></section>
+			<section data-markdown="all-pairs-view.md"></section>
+
+
 			<section data-markdown="common-reference.md"></section>
 
 		</div>
@@ -123,7 +152,7 @@ Thoughts:
 
 			mouseWheel: true,
 			history: true,
-			transition: 'none',
+			transition: 'fade',
 			transitionSpeed: 'fast',
 			slideNumber: true,
 			width: 1280,
