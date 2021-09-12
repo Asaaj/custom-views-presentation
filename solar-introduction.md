@@ -48,7 +48,7 @@ def CalculateAllForces(all_bodies):
 </section>
 <section>
 
-<div class="hl-block fragment">
+<div class="fragment">
 This can be done with a <code>transform_reduce</code>:
 </div>
 

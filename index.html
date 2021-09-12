@@ -11,90 +11,15 @@
 	<link rel="stylesheet" href="reveal.js/dist/theme/moon.css">
 
 	<!-- Theme used for syntax highlighted code -->
-	<link rel="stylesheet" href="themes/custom.css">
+	<link rel="stylesheet" href="themes/custom-syntax-hl.css">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 
-	<style>
-		.hl-block {
-			box-shadow: 0 0 7px #000000A0 !important;
-			border-radius: 5px !important;
-			padding: 10px !important;
-			background: #00495C;
-			color: #EEE8D5;
-		}
-
-		/* The first code block, which isn't a fragment, gets a shadow */
-		.reveal pre code:not(.fragment) {
-			max-height: 600px;
-			box-shadow: 0 0 7px #000000A0 !important;
-			border-radius: 5px !important;
-			padding: 10px !important;
-			background: #00495C;
-		}
-
-		/* Code fragments (i.e. the highlighted versions of a code block) don't get a shadow */
-		.reveal pre code.fragment {
-			max-height: 600px;
-			border-radius: 5px !important;
-			padding: 10px !important;
-			background: #00495C;
-		}
-
-		/* Highlighted code lines also have shadow behind them */
-		.highlight-line {
-			text-shadow: 0 0 7px #00000080 !important;
-		}
-
-		.reveal pre {
-			box-shadow: none;
-			width: fit-content;
-			height: fit-content;
-		}
-
-		.huge-text {
-			font-size: 100px;
-		}
-
-		.pretty-big-text {
-			font-size: 80px;
-		}
-
-		.medium-text {
-			font-size: 65px;
-		}
-
-		.left-align {
-			text-align: left;
-			padding: 40px !important;
-		}
-
-		.no-margin {
-			margin: 0 !important;
-		}
-
-		.no-margin-bottom {
-			margin-bottom: 0 !important;
-		}
-
-		.reveal h1,
-		.reveal h2,
-		.reveal h3,
-		.reveal h4,
-		.reveal h5,
-		.reveal h6 {
-			text-transform: none;
-			font-family: 'Roboto Slab', serif;
-		}
-
-		.reveal h6 {
-			font-size: 35px;
-		}
-
-	</style>
-
+	<!-- All the formatting specifically for this presentation.
+	     I make no guarantees about the quality or usefulness elsewhere. -->
+	<link rel="stylesheet" href="themes/custom-slide-style.css">
 </head>
 <body>
 

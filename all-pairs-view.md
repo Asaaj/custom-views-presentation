@@ -1,3 +1,5 @@
+<section data-background-image="images/planet-transformation.png" data-background-size="contain">
+</section>
 <section>
 
 ```c++ [|8]
