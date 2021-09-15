@@ -6,6 +6,14 @@
     color: #EEE8D5;
 }
 
+.aside-slide .hl-block {
+    box-shadow: 0 0 7px #000000A0 !important;
+    border-radius: 5px !important;
+    padding: 10px; /* TODO: Not "!important" because this was winning over .left-align */
+    background: #223D44;
+    color: #EEE8D5;
+}
+
 /* Code snippets within an hl-block have different styling */
 .reveal .hl-block pre code {
     background-color: #002B36 !important;
@@ -22,12 +30,46 @@
     background: #00495C;
 }
 
+.reveal .aside-slide pre code:not(.fragment) {
+    max-height: 600px;
+    box-shadow: 0 0 7px #000000A0 !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    background: #223D44;
+}
+
 /* Code fragments (i.e. the highlighted versions of a code block) don't get a shadow */
 .reveal pre code.fragment {
     max-height: 600px;
     border-radius: 5px !important;
     padding: 10px !important;
     background: #00495C;
+}
+
+.reveal .aside-slide pre code.fragment {
+    max-height: 600px;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    background: #223D44;
+}
+
+/* Used for exposition-only concepts */
+.reveal pre code i {
+    font-style: italic !important;
+}
+
+/* Code fragments inline with sentences and lists */
+.compare-columns code,
+div.hl-block p code,
+div.hl-block li code{
+    background-color: #003A49 !important;
+}
+
+.aside-slide .compare-columns code,
+.aside-slide .cpp-ref-types code,
+.aside-slide div.hl-block p code,
+.aside-slide div.hl-block li code{
+    background-color: #182B30 !important;
 }
 
 /* Highlighted code lines also have shadow behind them */
@@ -39,6 +81,23 @@
     box-shadow: none;
     width: fit-content;
     height: fit-content;
+}
+
+/* Highlighted inline text */
+.reveal .fragment.hl-text {
+    opacity: 100% !important;
+    visibility: visible !important;
+    transition: all .2s ease;
+    will-change: unset;
+}
+
+.fragment.hl-text.visible.current-fragment{
+     text-shadow: 0 0 7px #000000A0 !important;
+     background-color: #488190 !important;
+ }
+
+.fragment.hl-text.visible.current-fragment code {
+    background-color: #00000000 !important;
 }
 
 /* Comparison tables */
@@ -64,6 +123,40 @@
     border-left: none;
 }
 
+/* Memory bytes in a table form */
+.byte-layout td {
+    color: #0E1B1E;
+    background-color: #DCDCAA;
+    font-family: monospace;
+    border: 5px solid #0E1B1E;
+}
+
+/* Type table from cppreference */
+.cpp-ref-types {
+    font-size: 20px !important;
+}
+
+.cpp-ref-types th {
+    font-size: 26px !important;
+}
+
+.cpp-ref-types tr {
+    border-bottom: 2px solid #182B30 !important;
+}
+
+table.cpp-ref-types tr:last-child {
+    border-bottom: 2px solid #00000000 !important;
+}
+
+.cpp-ref-types aside.subtle {
+    color: #44AA44;
+    font-size: 18px;
+}
+
+.cpp-ref-types td i {
+    font-style: italic !important;
+}
+
 /* Other specific text stuff */
 aside.subtle {
     color: #0085A8;
@@ -71,8 +164,14 @@ aside.subtle {
     font-size: 25px;
 }
 
+.aside-tag {
+    position: absolute;
+    font-size: 25px;
+    z-index: 1000;
+}
+
 .huge-text {
-    font-size: 100px;
+    font-size: 100px !important;
 }
 
 .pretty-big-text {
@@ -84,7 +183,7 @@ aside.subtle {
 }
 
 .left-align {
-    text-align: left;
+    text-align: left !important;
     padding: 40px !important;
 }
 
@@ -94,6 +193,10 @@ aside.subtle {
 
 .no-margin-bottom {
     margin-bottom: 0 !important;
+}
+
+.handwriting {
+    font-family: 'Caveat', cursive;
 }
 
 .reveal h1,

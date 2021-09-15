@@ -27,7 +27,7 @@ https://github.com/ericniebler/range-v3
         <td>
             <ul>
                 <li>Semantically: a collection of "things".</li>
-                <li>Has<code> begin </code>and<code> end </code>functions.</li>
+                <li>Has <code>begin</code> and <code>end</code> functions.</li>
             </ul>
             <br /><br />
             <center><b style="font-size: 35px;">That's it.</b></center>
@@ -37,7 +37,7 @@ https://github.com/ericniebler/range-v3
                 <li>A specific type of range.</li>
                 <li><b>Constant-time copy/move/assign.</b></li>
                 <li>Semiregular <aside class="subtle">(copyable + default-constructible)</aside></li>
-                <li><code>ranges::enable_view </code>is true for it.</li>
+                <li><code>ranges::enable_view</code> is true for it.</li>
             </ul>
         </td>
     </tr>
@@ -132,10 +132,10 @@ namespace std {
 
 <div class="hl-block left-align">
 
-## Pipelines
+### "Pipelines"
 
 - Views and adaptors can be composed together.
-- <code>operator| </code>is used for composition.
+- <code>operator|</code> is used for composition.
 - A series of things connected with a pipe is often called a "pipeline".
 - To be complete, pipelines need source data.
 

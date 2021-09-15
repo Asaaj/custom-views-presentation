@@ -16,10 +16,13 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 
 	<!-- All the formatting specifically for this presentation.
 	     I make no guarantees about the quality or usefulness elsewhere. -->
 	<link rel="stylesheet" href="themes/custom-slide-style.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -37,6 +40,7 @@ Thoughts:
     - Another solution instead of cartesian_product_view might be by using drop_view to just drop thisBody on each loop.
       I should mention that, even though I won't use it.
     - Another disambiguation: view vs adaptor?
+    - inner_sentinel::operator==(inner_iterator) might be wrong! Double-check that.
 -->
 
 	<div class="reveal">
@@ -55,7 +59,11 @@ Thoughts:
 
 			<section data-markdown="solar-introduction.md"></section>
 			<section data-markdown="definitions.md"></section>
-			<section data-markdown="all-pairs-view.md"></section>
+			<section data-markdown="all-pairs-view-1.md"></section>
+			<section data-markdown="sentinels.md"></section>
+			<section data-markdown="all-pairs-view-2.md"></section>
+			<section data-markdown="vector_bool.md"
+					 data-background-color="#0E1B1E" class="aside-slide"></section>
 
 
 			<section data-markdown="common-reference.md"></section>
@@ -75,7 +83,7 @@ Thoughts:
 		Reveal.initialize({
 			hash: true, // For debug
 
-			mouseWheel: true,
+			// mouseWheel: true,
 			history: true,
 			transition: 'fade',
 			transitionSpeed: 'fast',
@@ -95,6 +103,10 @@ Thoughts:
 
 			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+		}).then(() => {
+			// $("section.aside-slide").prepend(
+			// 		"<p class='aside-tag'>[aside]</p>"
+			// );
 		});
 	</script>
 </body>
