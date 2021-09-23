@@ -30,17 +30,16 @@
 Thoughts:
     - Definitely need to disambiguate better between views, adapters, and factories. Need to point out that views are
       ready to be customized, but adapters are not.
-    - Some more explanation of the planet simulator would be helpful.
     - A good reason to use sentinels: it signals that you have C++20 requirements. Especially if you wrote a proxy
       iterator, a sentinel will ensure that doesn't work with old generic code that won't properly handle proxies.
     - std::cout on the first slide should use a C++20 printing technique...
-    - Mention transform_reduce when showing the summing of gravitational forces.
-    - GravitationalRange concept is probably redundant; std::ranges::range_value_t likely already requires
-      std::ranges::range.
     - Another solution instead of cartesian_product_view might be by using drop_view to just drop thisBody on each loop.
       I should mention that, even though I won't use it.
     - Another disambiguation: view vs adaptor?
     - inner_sentinel::operator==(inner_iterator) might be wrong! Double-check that.
+    - Be much more rigorous on defining Range Factory.
+    - Add in the note about the pointer type for proxy iterators somewhere. Not the same place as before though.
+    - Still need to define "Parent" and "Base" in all_pairs_view
 -->
 
 	<div class="reveal">
@@ -62,11 +61,20 @@ Thoughts:
 			<section data-markdown="all-pairs-view-1.md"></section>
 			<section data-markdown="sentinels.md"></section>
 			<section data-markdown="all-pairs-view-2.md"></section>
-			<section data-markdown="vector_bool.md"
+
+			<section data-markdown="vector-bool.md"
+					 data-background-color="#0E1B1E" class="aside-slide"></section>
+			<section data-markdown="proxy.md"
+					 data-background-color="#0E1B1E" class="aside-slide"></section>
+			<section data-markdown="iter-swap.md"
+					 data-background-color="#0E1B1E" class="aside-slide"></section>
+			<section data-markdown="cpo.md"
+					 data-background-color="#0E1B1E" class="aside-slide"></section>
+			<section data-markdown="common-reference.md"
 					 data-background-color="#0E1B1E" class="aside-slide"></section>
 
-
-			<section data-markdown="common-reference.md"></section>
+			<section data-markdown="pipe-operator.md"></section>
+			<section data-markdown="pipe-workaround.md"></section>
 
 		</div>
 	</div>
@@ -75,7 +83,6 @@ Thoughts:
 	<script src="reveal.js/plugin/notes/notes.js"></script>
 	<script src="reveal.js/plugin/markdown/markdown.js"></script>
 	<script src="reveal.js/plugin/highlight/highlight.js"></script>
-	<script src="reveal.js/plugin/math/math.js"></script>
 	<script>
 		// More info about initialization & config:
 		// - https://revealjs.com/initialization/
@@ -94,15 +101,7 @@ Thoughts:
 				smartypants: true,
 			},
 
-			math: {
-				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
-				config: 'TeX-AMS_HTML-full',
-				// pass other options into `MathJax.Hub.Config()`
-				TeX: { Macros: { RR: "{\\bf R}" } }
-			},
-
-			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 		}).then(() => {
 			// $("section.aside-slide").prepend(
 			// 		"<p class='aside-tag'>[aside]</p>"

@@ -23,7 +23,7 @@
         </td>
         <td>
             <ul>
-                <li>“New” to the C++20 STL.</li>
+                <li>"New" to the C++20 STL.</li>
                 <li>Tiny class returned by <code>end()</code> calls.</li>
                 <li>Checks <code>==</code> with <code>iterator</code> type.</li>
             </ul>
@@ -55,7 +55,7 @@ Let `s` and `i` be values of type `S` and `I`, respectively, such that `[i, s)` 
 `sentinel_for<S, I>` is modeled only if:
 
 - `i == s` is well-defined.
-- If `bool(i != s)` then `i` is dereferenceable and `[++i, s)` denotes a range.
+- <span class="fragment hl-text">If `bool(i != s)` then `i` is dereferenceable and `[++i, s)` denotes a range.</span>
 - `std::assignable_from<I&, S>` is either modeled or not satisfied.
 
 </div>

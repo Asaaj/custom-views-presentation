@@ -88,7 +88,7 @@ concept view = ranges::range&lt;T&gt; &&
         </td>
         <td>
             <ul>
-                <li>A view that creates elements from "nothing".</li>
+                <li>Returns a view that creates elements from "nothing".</li>
                 <li>Usually the source of a pipeline.</li>
                 <li>Only 4 in the standard.</li>
             </ul>
@@ -137,7 +137,7 @@ namespace std {
 - Views and adaptors can be composed together.
 - <code>operator|</code> is used for composition.
 - A series of things connected with a pipe is often called a "pipeline".
-- To be complete, pipelines need source data.
+- To be "complete", pipelines need source data.
 
 </div>
 

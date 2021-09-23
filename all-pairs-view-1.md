@@ -67,7 +67,7 @@ private:
 	using base_sentinel = std::ranges::sentinel_t<TView>;
 	using base_value_type = std::ranges::range_value_t<TView>;
 	using base_reference = std::ranges::range_reference_t<TView>;
-	using base_pointer = std::add_pointer_t<std::add_const_t<base_value_type>>;
+	using base_pointer = std::add_pointer_t<base_value_type>;
     /* ... */
 
 public:
@@ -123,7 +123,7 @@ private:
 
 	base_iterator _current_outer{};
 	base_iterator _current_inner{};
-	base_sentinel _parent_end_cache{};
+	base_sentinel _base_end_cache{};
 
 	void correct_inner_if_needed()
 	{
@@ -145,7 +145,7 @@ public:
 	inner_iterator(all_pairs_view const& parent, base_iterator const& current)
 		: _current_outer{ current }
 		, _current_inner{ std::ranges::begin(parent.base()) }
-		, _parent_end_cache{ std::ranges::end(parent.base()) }
+		, _base_end_cache{ std::ranges::end(parent.base()) }
 	{
 		correct_inner_if_needed();
 	}

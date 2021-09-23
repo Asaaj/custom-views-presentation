@@ -44,8 +44,7 @@ public:
  
 	inner_view(all_pairs_view const& parent, base_iterator current)
 		: _parent{ std::addressof(parent) }
-		, _current_outer{ std::move(current) }
-	{ }
+		, _current_outer{ std::move(current) } { }
  
 	[[nodiscard]] iterator begin() const { return { *_parent, _current_outer }; }
 	[[nodiscard]] sentinel end() const { return { }; }
@@ -82,11 +81,10 @@ public:
 </section>
 <section>
 
-```c++ [1-21|23-40|40]
+```c++ [1-20|22-39|39]
 class outer_iterator
 {
 private:
-	friend class outer_sentinel;
 	using base_iterator = std::ranges::iterator_t<TView>;
 
 	all_pairs_view const* _parent{};
@@ -95,6 +93,7 @@ private:
 public:
 	using value_type = inner_view;
 	using reference = value_type; // I’ll come back to this
+	using pointer = value_type*;  // And this
 	using difference_type = std::ptrdiff_t;
 	using iterator_category = std::forward_iterator_tag;
 
@@ -102,8 +101,7 @@ public:
 
 	outer_iterator(all_pairs_view const& parent, base_iterator current)
 		: _parent{ std::addressof(parent) }
-		, _current{ std::move(current) }
-	{ }
+		, _current{ std::move(current) } { }
 
 	[[nodiscard]] value_type operator*() const
 	{

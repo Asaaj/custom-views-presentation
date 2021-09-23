@@ -25,8 +25,7 @@ concept GravitationalBody = requires(T const t)
 };
 
 template <class T>
-concept GravitationalRange =
-    std::ranges::range<T> && GravitationalBody<std::ranges::range_value_t<T>>;
+concept GravitationalRange = GravitationalBody<std::ranges::range_value_t<T>>;
 ```
 
 </section>
@@ -61,13 +60,6 @@ def GetForceOnBody(this_body, all_bodies):
 ```
 
 </section>
-
-[comment]: <> (<section>)
-[comment]: <> (<div class="hl-block huge-text">)
-[comment]: <> ($$ F = G\frac{m_1 m_2}{r^2} $$)
-[comment]: <> (</div>)
-[comment]: <> (</section>)
-
 <section>
 
 ```c++ [|14-15|5-12||7]

@@ -6,6 +6,11 @@
     color: #EEE8D5;
 }
 
+.reveal pre code {
+    font-size: 25px;
+    line-height: 28px;
+}
+
 .aside-slide .hl-block {
     box-shadow: 0 0 7px #000000A0 !important;
     border-radius: 5px !important;
@@ -75,6 +80,16 @@ div.hl-block li code{
 /* Highlighted code lines also have shadow behind them */
 .highlight-line {
     text-shadow: 0 0 7px #00000080 !important;
+}
+
+.reveal pre code .fragment.code-warning {
+    opacity: 100% !important;
+    visibility: visible !important;
+}
+
+.reveal pre code .fragment.code-warning.visible {
+    text-shadow: 0 0 7px #000000A0 !important;
+    background-color: #980000;
 }
 
 .reveal pre {
@@ -168,6 +183,35 @@ aside.subtle {
     position: absolute;
     font-size: 25px;
     z-index: 1000;
+}
+
+.correction {
+    position: absolute;
+    color: #DA3939 !important;
+    font-weight: 600 !important;
+    text-shadow: 0 0 7px #000000A0 !important;
+}
+.correction.handwriting {
+    position: absolute;
+    color: #DA3939;
+    font-weight: 400 !important;
+    transform: rotate(5deg);
+    font-size: 80px;
+}
+
+.code-note {
+    position: absolute;
+    left: 15%;
+    width: 70%;
+}
+
+.reveal blockquote {
+    width: 90%;
+    margin: auto auto auto 40px;
+    background-color: #00000000;
+    box-shadow: none;
+    font-size: 50px;
+    font-style: unset;
 }
 
 .huge-text {

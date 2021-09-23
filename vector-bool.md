@@ -1,7 +1,7 @@
 <section>
 
 <div class="hl-block pretty-big-text">
-    <code class="cpp" data-noescape data-trim>
+    <code class="cpp">
         vector&lt;<span class="hljs-keyword">bool</span>&gt;
     </code>
 </div>
@@ -47,7 +47,7 @@ std::vector<bool> v{ true, true, false, true };
 
 <img src="images/crossed-bytes.png" 
      class="fragment" data-fragment-index="1"
-     style="position: absolute; top: 80px; left: 150px; width: 980px; height: 150px;" />
+     style="position: absolute; top: 85px; left: 150px; width: 980px; height: 150px;" />
 
 <br/>
 
@@ -260,27 +260,12 @@ void f(T& t)
     <div class="fragment" data-fragment-index="1"
          style="position: absolute; top: 90px; left: 500px; width: 670px; height: 10px; background-color: #DA3939; box-shadow: 0 0 7px #000000A0;"></div>
     <div class="fragment" data-fragment-index="1">
-        <h2 style="position: absolute; top: -60px; left: 550px; color: #DA3939; font-weight: 600; text-shadow: 0 0 7px #000000A0 !important;">that conforms</h2>
+        <h2 class="correction" style="top: -60px; left: 550px;">that conforms</h2>
     </div>
     <div class="fragment" data-fragment-index="2">
-        <p class="handwriting"
-           style="position: absolute; top: -160px; left: 930px; color: #DA3939; transform: rotate(5deg); text-align: right; font-size: 60px;">with C++20<br />^</p>
+        <p class="correction handwriting"
+           style="top: -200px; left: 850px; text-align: right;">with C++20<br />^</p>
     </div>
-</div>
-
-</section>
-<section>
-
-If you want more, read this:
-
-<div class="hl-block left-align">
-
-## P0022: Proxy Iterators for the Ranges Extensions
-
-<br />
-
-### - Eric Niebler, 2015
-
 </div>
 
 </section>
