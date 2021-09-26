@@ -256,3 +256,26 @@ aside.subtle {
 .reveal h6 {
     font-size: 35px;
 }
+
+/* Scrollbar style */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #003744 #005166;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #005166;
+    border-radius: 7px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #003744;
+    border-radius: 7px;
+    border: none;
+}

@@ -146,3 +146,17 @@ struct generic_pipeable
 ```
 
 </section>
+<section>
+
+```c++ []
+auto my_std_adaptor = std::views::all
+                    | jtl::views::all_pairs
+                    | std::views::all;
+
+auto my_rv3_adaptor = ranges::views::all
+                    | jtl::views::all_pairs
+                    | ranges::views::all;
+
+```
+
+</section>

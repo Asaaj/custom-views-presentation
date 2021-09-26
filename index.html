@@ -28,18 +28,20 @@
 
 <!--
 Thoughts:
+    - Instead of showing the pipe workaround, I should just show how it works and where it fails. Maybe I can make the
+      solution for complete pipelines available on GitHub.
     - Definitely need to disambiguate better between views, adapters, and factories. Need to point out that views are
       ready to be customized, but adapters are not.
     - A good reason to use sentinels: it signals that you have C++20 requirements. Especially if you wrote a proxy
       iterator, a sentinel will ensure that doesn't work with old generic code that won't properly handle proxies.
-    - std::cout on the first slide should use a C++20 printing technique...
-    - Another solution instead of cartesian_product_view might be by using drop_view to just drop thisBody on each loop.
+    - Another solution instead of cartesian_product_view might be by using filter_view to just drop thisBody on each loop.
       I should mention that, even though I won't use it.
     - Another disambiguation: view vs adaptor?
     - inner_sentinel::operator==(inner_iterator) might be wrong! Double-check that.
     - Be much more rigorous on defining Range Factory.
     - Add in the note about the pointer type for proxy iterators somewhere. Not the same place as before though.
     - Still need to define "Parent" and "Base" in all_pairs_view
+    - Mention needing to opt into enable_view in all of the supported libraries.
 -->
 
 	<div class="reveal">
@@ -66,14 +68,14 @@ Thoughts:
 					 data-background-color="#0E1B1E" class="aside-slide"></section>
 			<section data-markdown="proxy.md"
 					 data-background-color="#0E1B1E" class="aside-slide"></section>
-			<section data-markdown="iter-swap.md"
-					 data-background-color="#0E1B1E" class="aside-slide"></section>
 			<section data-markdown="cpo.md"
+					 data-background-color="#0E1B1E" class="aside-slide"></section>
+			<section data-markdown="iter-swap.md"
 					 data-background-color="#0E1B1E" class="aside-slide"></section>
 			<section data-markdown="common-reference.md"
 					 data-background-color="#0E1B1E" class="aside-slide"></section>
 
-			<section data-markdown="pipe-operator.md"></section>
+			<section data-markdown="pipe-operator-original.md"></section>
 			<section data-markdown="pipe-workaround.md"></section>
 
 		</div>

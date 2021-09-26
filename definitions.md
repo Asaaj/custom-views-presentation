@@ -134,9 +134,9 @@ namespace std {
 
 ### "Pipelines"
 
-- Views and adaptors can be composed together.
+- Adaptors can be composed together.
 - <code>operator|</code> is used for composition.
-- A series of things connected with a pipe is often called a "pipeline".
+- Multiple adaptors connected with a pipe is often called a "pipeline".
 - To be "complete", pipelines need source data.
 
 </div>

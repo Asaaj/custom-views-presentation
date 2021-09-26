@@ -209,18 +209,18 @@ public:
 namespace std {
 // Exposition only:
 template &lt;class T>
-concept __Referenceable = // *std::declval&lt;T&>() has a referenceable type
+concept <i>__Referenceable</i> = // *std::declval&lt;T&>() has a referenceable type
 
 template &lt;class T>
 using iter_value_t = /* T::value_type, basically */;
  
-template &lt;__Referenceable T>
+template &lt;<i>__Referenceable</i> T>
 using iter_reference_t = decltype(*std::declval&lt;T&>());
  
 template &lt;class T>
 using iter_difference_t = /* t::difference_type, basically */;
  
-template &lt;__Referenceable T>
+template &lt;<i>__Referenceable</i> T>
     requires /* iter_move is valid */
 using iter_rvalue_reference_t = decltype(ranges::iter_move(std::declval&lt;T&>()));
 }
