@@ -136,7 +136,7 @@ Before C++20, everything was confusing:
 
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
-- <code class="cpp">vector&lt;<span class="hljs-keyword">bool</span>&gt;::iterator</code> wasn't a real iterator. 🤦‍♂️
+- <code class="cpp">vector&lt;<span class="hljs-keyword">bool</span>&gt;::iterator</code> wasn't even a forward iterator. 🤦‍♂️
 
 <!-- .element: class="fragment" data-fragment-index="1" -->
 

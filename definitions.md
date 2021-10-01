@@ -36,7 +36,6 @@ https://github.com/ericniebler/range-v3
             <ul>
                 <li>A specific type of range.</li>
                 <li><b>Constant-time copy/move/assign.</b></li>
-                <li>Semiregular <aside class="subtle">(copyable + default-constructible)</aside></li>
                 <li><code>ranges::enable_view</code> is true for it.</li>
             </ul>
         </td>
@@ -57,7 +56,7 @@ concept range = requires(T& t)
                 <code class="cpp">
 template &lt;class T&gt;
 concept view = ranges::range&lt;T&gt; &&
-               semiregular&lt;T&gt; &&
+               movable&lt;T&gt; &&
                ranges::enable_view&lt;T&gt;;
 
 </code>
@@ -65,6 +64,12 @@ concept view = ranges::range&lt;T&gt; &&
         </td>
     </tr>
 </table>
+
+<aside class="notes">
+
+Note that the requirements for views just changed in May, in P2325.
+
+</aside>
 
 </section>
 <section>
@@ -100,7 +105,7 @@ concept view = ranges::range&lt;T&gt; &&
                 <code class="cpp">using namespace std::ranges;
 auto a = views::reverse;
 auto b = views::drop(2) | views::keys |
-         views::filter(evens);
+         views::filter(even);
 </code>
             </pre>
         </td>
@@ -147,7 +152,7 @@ namespace std {
 
 ```c++ [2]
 using namespace std::views;
-for (int i : iota(2) | filter(evens) | transform(square))
+for (int i : iota(2) | filter(even) | transform(square))
 	std::cout << i << ' ';
 ```
 

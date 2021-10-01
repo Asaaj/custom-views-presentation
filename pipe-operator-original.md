@@ -8,7 +8,7 @@
 
 ```c++ [2]
 using namespace std::views;
-for (int i : iota(2) | filter(evens) | transform(square))
+for (int i : iota(2) | filter(even) | transform(square))
 	std::cout << i << ' ';
 ```
 
@@ -53,7 +53,7 @@ inline constexpr detail::all_pairs_fn all_pairs;
 
 - Not standardized; implementations incompatible.
 - “Incomplete” adaptors like this are pretty tough to implement:
-    ```auto a = std::views::transform(evens);```
+    ```auto a = std::views::transform(even);```
 - Lots of boilerplate and upkeep for implementers.
 
 </div>

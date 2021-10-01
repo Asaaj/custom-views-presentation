@@ -25,15 +25,16 @@ public:
 </section>
 <section>
 
-```c++ [|4]
+```c++ [|7,9|2,4]
 template <class T>
-concept view = ranges::range<T> && 
-               ranges::semiregular<T> && 
-               ranges::enable_view<T>;
+concept view = ranges::range<T>
+               && std::movable<T>
+               && ranges::enable_view<T>;
 
 template<class T>
-concept viewable_range = ranges::range<T> && (ranges::borrowed_range<T> || 
-                                              ranges::view<std::remove_cvref_t<T>>);
+concept viewable_range = ranges::range<T>
+                         && (ranges::borrowed_range<T> || 
+                             ranges::view<std::remove_cvref_t<T>>);
 ```
 
 </section>
@@ -42,15 +43,15 @@ concept viewable_range = ranges::range<T> && (ranges::borrowed_range<T> ||
 ```c++ [|1-3,5-7]
 template <class Rng>
 concept supported_enable_view = std::ranges::enable_view<Rng>
-                             || ranges::enable_view<Rng>;
+                                || ranges::enable_view<Rng>;
  
 template <class Rng>
 concept supported_enable_borrowed_range = std::ranges::enable_borrowed_range<Rng>
-                                       || ranges::enable_borrowed_range<Rng>;
+                                          || ranges::enable_borrowed_range<Rng>;
  
 template <class Rng>
-concept supported_view = std::ranges::range<Rng> && std::movable<Rng> && 
-    std::default_initializable<Rng> && supported_enable_view<Rng>;
+concept supported_view = std::ranges::range<Rng> && std::movable<Rng>
+                         && supported_enable_view<Rng>;
  
 template <class Rng>
 concept supported_borrowed_range = /* see std::ranges::borrowed_range */

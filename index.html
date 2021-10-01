@@ -42,6 +42,8 @@ Thoughts:
     - Add in the note about the pointer type for proxy iterators somewhere. Not the same place as before though.
     - Still need to define "Parent" and "Base" in all_pairs_view
     - Mention needing to opt into enable_view in all of the supported libraries.
+    - Explain: Views either generate elements on command, or hold a limited number of iterators. That's it.
+    - Need to show std::iter_swap and why it wasn't good enough.
 -->
 
 	<div class="reveal">
@@ -75,8 +77,10 @@ Thoughts:
 			<section data-markdown="common-reference.md"
 					 data-background-color="#0E1B1E" class="aside-slide"></section>
 
-			<section data-markdown="pipe-operator-original.md"></section>
-			<section data-markdown="pipe-workaround.md"></section>
+			<section data-markdown="pipe-operator.md"></section>
+
+<!--			<section data-markdown="pipe-operator-original.md"></section>-->
+<!--			<section data-markdown="pipe-workaround.md"></section>-->
 
 		</div>
 	</div>

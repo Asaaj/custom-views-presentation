@@ -2,7 +2,7 @@
 
 ```c++ []
 using namespace std::views;
-for (int i : iota(2) | filter(evens) | transform(square))
+for (int i : iota(2) | filter(even) | transform(square))
 	std::cout << i << ' ';
 ``` 
 
