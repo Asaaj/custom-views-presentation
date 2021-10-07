@@ -3,17 +3,17 @@
 <section>
 
 ```c++ [|8]
-template <std::ranges::view TView> requires std::ranges::forward_range<TView>
+template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
-	public std::ranges::view_interface<all_pairs_view<TView>> // CRTP!
+	public std::ranges::view_interface<all_pairs_view<TBase>> // CRTP!
 {
 private:
-	TView _vw;
+	TBase _vw;
 public:
 	class iterator { /* ... */ };
  
 	all_pairs_view() = default;
-	constexpr all_pairs_view(TView vw);
+	constexpr all_pairs_view(TBase vw);
  
 	[[nodiscard]] constexpr iterator begin() const;
 	[[nodiscard]] constexpr iterator end() const;
@@ -31,12 +31,12 @@ A <code>view</code> is often just a supplier<br />of a very fancy iterator.
 <section>
 
 ```c++ [|7]
-template <std::ranges::view TView> requires std::ranges::forward_range<TView>
+template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
-	public std::ranges::view_interface<all_pairs_view<TView>>
+	public std::ranges::view_interface<all_pairs_view<TBase>>
 {
 private:
-	TView _vw;
+	TBase _vw;
 	class inner_iterator { /* ... */ };
 	class inner_sentinel { /* ... */ };
 	class inner_view { /* ... */ };
@@ -47,7 +47,7 @@ public:
 	using iterator = outer_iterator;
  
 	all_pairs_view() = default;
-	constexpr all_pairs_view(TView vw);
+	constexpr all_pairs_view(TBase vw);
  
 	[[nodiscard]] constexpr iterator begin() const;
 	[[nodiscard]] constexpr iterator end() const;
@@ -63,10 +63,10 @@ class inner_iterator
 private:
 	friend class inner_sentinel;
  
-	using base_iterator = std::ranges::iterator_t<TView>;
-	using base_sentinel = std::ranges::sentinel_t<TView>;
-	using base_value_type = std::ranges::range_value_t<TView>;
-	using base_reference = std::ranges::range_reference_t<TView>;
+	using base_iterator = std::ranges::iterator_t<TBase>;
+	using base_sentinel = std::ranges::sentinel_t<TBase>;
+	using base_value_type = std::ranges::range_value_t<TBase>;
+	using base_reference = std::ranges::range_reference_t<TBase>;
 	using base_pointer = std::add_pointer_t<base_value_type>;
     /* ... */
 
@@ -115,10 +115,10 @@ class inner_iterator
 private:
 	friend class inner_sentinel;
 
-	using base_iterator = std::ranges::iterator_t<TView>;
-	using base_sentinel = std::ranges::sentinel_t<TView>;
-	using base_value_type = std::ranges::range_value_t<TView>;
-	using base_reference = std::ranges::range_reference_t<TView>;
+	using base_iterator = std::ranges::iterator_t<TBase>;
+	using base_sentinel = std::ranges::sentinel_t<TBase>;
+	using base_value_type = std::ranges::range_value_t<TBase>;
+	using base_reference = std::ranges::range_reference_t<TBase>;
 	using base_pointer = std::add_pointer_t<std::add_const_t<base_value_type>>;
 
 	base_iterator _current_outer{};
@@ -183,12 +183,12 @@ public:
 <section>
 
 ```c++ [7|8]
-template <std::ranges::view TView> requires std::ranges::forward_range<TView>
+template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
-	public std::ranges::view_interface<all_pairs_view<TView>>
+	public std::ranges::view_interface<all_pairs_view<TBase>>
 {
 private:
-	TView _vw;
+	TBase _vw;
 	class inner_iterator { /* ... */ };
 	class inner_sentinel { /* ... */ };
 	class inner_view { /* ... */ };
@@ -199,7 +199,7 @@ public:
 	using iterator = outer_iterator;
  
 	all_pairs_view() = default;
-	constexpr all_pairs_view(TView vw);
+	constexpr all_pairs_view(TBase vw);
  
 	[[nodiscard]] constexpr iterator begin() const;
 	[[nodiscard]] constexpr iterator end() const;

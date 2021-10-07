@@ -36,7 +36,7 @@ https://github.com/ericniebler/range-v3
             <ul>
                 <li>A specific type of range.</li>
                 <li><b>Constant-time copy/move/assign.</b></li>
-                <li><code>ranges::enable_view</code> is true for it.</li>
+                <li><code>ranges::enable_view&lt;T></code> is true.</li>
             </ul>
         </td>
     </tr>
@@ -86,15 +86,15 @@ Note that the requirements for views just changed in May, in P2325.
     <tr>
         <td>
             <ul>
-                <li>Takes a range and returns a view.</li>
-                <li>Most views are made by adaptors.</li>
-                <li>Adaptors can compose to make new adaptors.</li>
+                <li>A view that "points at" a range.</li>
+                <li>Requires a range for input.</li>
+                <li>Most views are adaptors.</li>
             </ul>
         </td>
         <td>
             <ul>
-                <li>Returns a view that creates elements from "nothing".</li>
-                <li>Usually the source of a pipeline.</li>
+                <li>A view that generates elements on demand.</li>
+                <li>Does not have any "backing" range.</li>
                 <li>Only 4 in the standard.</li>
             </ul>
         </td>
@@ -103,9 +103,8 @@ Note that the requirements for views just changed in May, in P2325.
         <td>
             <pre>
                 <code class="cpp">using namespace std::ranges;
-auto a = views::reverse;
-auto b = views::drop(2) | views::keys |
-         views::filter(even);
+auto a = ref_view{ some_vect };
+auto b = filter_view{ a, even };
 </code>
             </pre>
         </td>
@@ -114,46 +113,16 @@ auto b = views::drop(2) | views::keys |
                 <code class="cpp">using namespace std::ranges;
 auto a = views::iota(1, 10);
 auto b = istream_view&lt;std::string&gt;(words);
-
 </code>
             </pre>
         </td>
     </tr>
 </table>
 
-</section>
-<section>
-
-<div>In the standard:</div>
-
-```c++
-namespace std {
-	namespace views = ranges::views;
-}
-```
-
-</section>
-<section>
-
-<div class="hl-block left-align">
-
-### "Pipelines"
-
-- Adaptors can be composed together.
-- <code>operator|</code> is used for composition.
-- Multiple adaptors connected with a pipe is often called a "pipeline".
-- To be "complete", pipelines need source data.
-
-</div>
-
-</section>
-
-<section>
-
-```c++ [2]
-using namespace std::views;
-for (int i : iota(2) | filter(even) | transform(square))
-	std::cout << i << ' ';
-```
+<aside class="notes">
+And this makes sense, right? If you think about the different ways you might represent a *range* that is constant-time
+copyable, it must be either by not owning the data (so it just contains a limited number of pointers to the real data),
+or by generating the data on demand. And that's exactly what these two do.
+</aside>
 
 </section>

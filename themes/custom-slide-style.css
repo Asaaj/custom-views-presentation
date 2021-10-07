@@ -6,6 +6,10 @@
     color: #EEE8D5;
 }
 
+.reveal a {
+    color: #BBB6A7;
+}
+
 .reveal pre code {
     font-size: 25px;
     line-height: 28px;

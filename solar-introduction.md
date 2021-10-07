@@ -1,5 +1,24 @@
 <section>
 
+<div class="hl-block left-align">
+
+### About Me
+
+- Software Engineer at Keysight Technologies, Inc.
+- Live in Colorado Springs, CO.
+- IDK, more?
+- Contact: jacob@rice.systems
+
+<center>
+    <img src="images/keysight-logo.png" width="400" style="margin-top: 30px"
+         alt="Keysight Technologies, Inc." />
+</center>
+
+</div>
+
+</section>
+<section>
+
 ```c++ []
 using namespace std::views;
 for (int i : iota(2) | filter(even) | transform(square))
@@ -37,23 +56,13 @@ concept GravitationalRange = GravitationalBody<std::ranges::range_value_t<T>>;
 </section>
 <section>
 
-```python
-def CalculateAllForces(all_bodies):
-    for body in all_bodies:
-        force = GetForceOnBody(body, all_bodies)
-        ## Use `force`
-```
-
-</section>
-<section>
-
 <div class="fragment">
 This can be done with a <code>transform_reduce</code>:
 </div>
 
 ```python
 def GetForceOnBody(this_body, all_bodies):
-    all_forces = []
+    all_forces = list()
     for other_body in all_bodies:
         all_forces.append(SingleForceOnThisBody(this_body, other_body))
     return sum(all_forces)

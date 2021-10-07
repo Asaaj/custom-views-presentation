@@ -36,28 +36,18 @@ Thoughts:
       iterator, a sentinel will ensure that doesn't work with old generic code that won't properly handle proxies.
     - Another solution instead of cartesian_product_view might be by using filter_view to just drop thisBody on each loop.
       I should mention that, even though I won't use it.
-    - Another disambiguation: view vs adaptor?
-    - inner_sentinel::operator==(inner_iterator) might be wrong! Double-check that.
-    - Be much more rigorous on defining Range Factory.
     - Add in the note about the pointer type for proxy iterators somewhere. Not the same place as before though.
-    - Still need to define "Parent" and "Base" in all_pairs_view
     - Mention needing to opt into enable_view in all of the supported libraries.
-    - Explain: Views either generate elements on command, or hold a limited number of iterators. That's it.
-    - Need to show std::iter_swap and why it wasn't good enough.
+    - Define viewable_range
 -->
 
 	<div class="reveal">
 		<div class="slides">
 
-			<section>
-				<div class="hl-block">
-					<h2 style="margin-top: 30px">Custom Views<br/>for the Rest of Us</h2>
-					—
-					<h3 class="no-margin-bottom">Jacob Rice</h3>
-					<h6 class="no-margin">jacob@rice.systems</h6>
-					<img src="images/keysight-logo.png" width="300" style="margin-top: 30px"
-						 alt="Keysight Technologies, Inc." />
-				</div>
+			<section data-background-image="images/title-card.png"
+					 data-background-size="contain"
+			         data-background-color="#000000">
+
 			</section>
 
 			<section data-markdown="solar-introduction.md"></section>
@@ -77,11 +67,7 @@ Thoughts:
 			<section data-markdown="common-reference.md"
 					 data-background-color="#0E1B1E" class="aside-slide"></section>
 
-			<section data-markdown="pipe-operator.md"></section>
-
-<!--			<section data-markdown="pipe-operator-original.md"></section>-->
-<!--			<section data-markdown="pipe-workaround.md"></section>-->
-
+			<section data-markdown="pipe-operator-2.md"></section>
 		</div>
 	</div>
 

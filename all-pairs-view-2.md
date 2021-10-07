@@ -1,12 +1,12 @@
 <section>
 
 ```c++ [8|9]
-template <std::ranges::view TView> requires std::ranges::forward_range<TView>
+template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
-	public std::ranges::view_interface<all_pairs_view<TView>>
+	public std::ranges::view_interface<all_pairs_view<TBase>>
 {
 private:
-	TView _vw;
+	TBase _vw;
 	class inner_iterator { /* ... */ };
 	class inner_sentinel { /* ... */ };
 	class inner_view { /* ... */ };
@@ -17,7 +17,7 @@ public:
 	using iterator = outer_iterator;
  
 	all_pairs_view() = default;
-	constexpr all_pairs_view(TView vw);
+	constexpr all_pairs_view(TBase vw);
  
 	[[nodiscard]] constexpr iterator begin() const;
 	[[nodiscard]] constexpr iterator end() const;
@@ -31,7 +31,7 @@ public:
 class inner_view : public std::ranges::view_interface<inner_view>
 {
 private:
-	using base_iterator = std::ranges::iterator_t<TView>;
+	using base_iterator = std::ranges::iterator_t<TBase>;
  
 	all_pairs_view const* _parent{};
 	base_iterator _current_outer{};
@@ -55,12 +55,12 @@ public:
 <section>
 
 ```c++ [9|11]
-template <std::ranges::view TView> requires std::ranges::forward_range<TView>
+template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
-	public std::ranges::view_interface<all_pairs_view<TView>>
+	public std::ranges::view_interface<all_pairs_view<TBase>>
 {
 private:
-	TView _vw;
+	TBase _vw;
 	class inner_iterator { /* ... */ };
 	class inner_sentinel { /* ... */ };
 	class inner_view { /* ... */ };
@@ -71,7 +71,7 @@ public:
 	using iterator = outer_iterator;
  
 	all_pairs_view() = default;
-	constexpr all_pairs_view(TView vw);
+	constexpr all_pairs_view(TBase vw);
  
 	[[nodiscard]] constexpr iterator begin() const;
 	[[nodiscard]] constexpr iterator end() const;
@@ -85,7 +85,7 @@ public:
 class outer_iterator
 {
 private:
-	using base_iterator = std::ranges::iterator_t<TView>;
+	using base_iterator = std::ranges::iterator_t<TBase>;
 
 	all_pairs_view const* _parent{};
 	base_iterator _current{};

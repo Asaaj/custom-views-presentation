@@ -10,7 +10,7 @@
 
 ```c++ []
 template <class I>
-void SwapEnds(I first, I last)
+void SwapIters(I first, I last)
 {
 	using std::swap;
 	swap(*first, *last);
@@ -22,6 +22,11 @@ void SwapEnds(I first, I last)
 Proxy reference type could be `pair<T&,T&>`, so this just swapped two r-values.
 
 </div>
+
+<aside class="notes">
+I could use std::iter_swap for this, but it actually does the same thing. It can be used to avoid this pattern, but it
+has the same problem with proxy iterators.
+</aside>
 
 </section>
 <section>
@@ -160,8 +165,8 @@ If `ranges::iter_move(e)` is not equal to `*e`, the program is ill-formed, no di
 class inner_iterator
 {
 private:
-	using base_value_type = std::ranges::range_value_t<TView>;
-	using base_reference = std::ranges::range_reference_t<TView>;
+	using base_value_type = std::ranges::range_value_t<TBase>;
+	using base_reference = std::ranges::range_reference_t<TBase>;
  
 public:
 	using value_type = std::pair<base_value_type, base_value_type>;
@@ -169,7 +174,7 @@ public:
  
 	friend constexpr auto iter_move(inner_iterator i)
     {
-		using base_rref = decltype(std::ranges::iter_move(i._current_outer));
+		using base_rref = std::ranges::range_rvalue_reference_t<TBase>;
 		return std::pair<base_rref, base_rref> {
 			std::ranges::iter_move(i._current_outer),
 			std::ranges::iter_move(i._current_inner)
@@ -185,8 +190,8 @@ public:
 class inner_iterator
 {
 private:
-	using base_value_type = std::ranges::range_value_t<TView>;
-	using base_reference = std::ranges::range_reference_t<TView>;
+	using base_value_type = std::ranges::range_value_t<TBase>;
+	using base_reference = std::ranges::range_reference_t<TBase>;
  
 public:
 	using value_type = std::pair<base_value_type, base_value_type>;
@@ -230,14 +235,12 @@ using iter_rvalue_reference_t = decltype(ranges::iter_move(std::declval&lt;T&>()
 </section>
 <section>
 
-TALK ABOUT WHY THIS BREAKS FOR CYCLING VIEWS.
-
 ```c++ []
 class inner_iterator
 {
 private:
-	using base_value_type = std::ranges::range_value_t<TView>;
-	using base_reference = std::ranges::range_reference_t<TView>;
+	using base_value_type = std::ranges::range_value_t<TBase>;
+	using base_reference = std::ranges::range_reference_t<TBase>;
  
 public:
 	using value_type = std::pair<base_value_type, base_value_type>;
@@ -252,5 +255,10 @@ public:
     }
 };
 ```
+
+</section>
+<section>
+
+[Insert diagram to demonstrate cycling view problem.]
 
 </section>
