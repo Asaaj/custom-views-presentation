@@ -23,8 +23,8 @@
         </td>
         <td>
             <ul>
-                <li>"New" to the C++20 STL.</li>
-                <li>Tiny class returned by <code>end()</code> calls.</li>
+                <li>"New" to <code>std::ranges</code>.</li>
+                <li>Class returned by <code>end()</code> calls.</li>
                 <li>Checks <code>==</code> with <code>iterator</code> type.</li>
             </ul>
         </td>

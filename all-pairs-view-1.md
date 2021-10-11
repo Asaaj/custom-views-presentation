@@ -24,7 +24,7 @@ public:
 <section>
 
 <div class="hl-block pretty-big-text">
-A <code>view</code> is often just a supplier<br />of a very fancy iterator.
+A view is often just a supplier<br/>of a very fancy iterator.
 </div>
 
 </section>

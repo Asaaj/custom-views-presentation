@@ -5,8 +5,7 @@
 ### About Me
 
 - Software Engineer at Keysight Technologies, Inc.
-- Live in Colorado Springs, CO.
-- IDK, more?
+- High Performance Oscilloscope Software Team
 - Contact: jacob@rice.systems
 
 <center>

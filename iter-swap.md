@@ -10,10 +10,10 @@
 
 ```c++ []
 template <class I>
-void SwapIters(I first, I last)
+void SwapIters(I lhs, I rhs)
 {
 	using std::swap;
-	swap(*first, *last);
+	swap(*lhs, *rhs);
 }
 ```
 
@@ -92,10 +92,6 @@ Proxy reference type could be `pair<T&,T&>`, so this moved an r-value.
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
 - Used by all `std::ranges` algorithms that move values.
-
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-- Think "move value out of iterator", returns an "r-value-style" type.
 
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
@@ -186,55 +182,6 @@ public:
 </section>
 <section>
 
-```c++ [|11]
-class inner_iterator
-{
-private:
-	using base_value_type = std::ranges::range_value_t<TBase>;
-	using base_reference = std::ranges::range_reference_t<TBase>;
- 
-public:
-	using value_type = std::pair<base_value_type, base_value_type>;
-	using reference = std::pair<base_reference, base_reference>;
- 
-	friend constexpr auto iter_move(inner_iterator i)
-    {
-		return std::pair {
-			std::ranges::iter_move(i._current_outer),
-			std::ranges::iter_move(i._current_inner)
-		};
-    }
-};
-```
-
-</section>
-<section>
-
-<pre><code class="cpp" data-noescape data-trim data-line-numbers="|15-17">
-namespace std {
-// Exposition only:
-template &lt;class T>
-concept <i>__Referenceable</i> = // *std::declval&lt;T&>() has a referenceable type
-
-template &lt;class T>
-using iter_value_t = /* T::value_type, basically */;
- 
-template &lt;<i>__Referenceable</i> T>
-using iter_reference_t = decltype(*std::declval&lt;T&>());
- 
-template &lt;class T>
-using iter_difference_t = /* t::difference_type, basically */;
- 
-template &lt;<i>__Referenceable</i> T>
-    requires /* iter_move is valid */
-using iter_rvalue_reference_t = decltype(ranges::iter_move(std::declval&lt;T&>()));
-}
-</code>
-</pre>
-
-</section>
-<section>
-
 ```c++ []
 class inner_iterator
 {
@@ -262,3 +209,4 @@ public:
 [Insert diagram to demonstrate cycling view problem.]
 
 </section>
+
