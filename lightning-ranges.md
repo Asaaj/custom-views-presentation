@@ -43,6 +43,19 @@ C++20 constrains algorithms in `<algorithm>`, but not `<numeric>`.
 </section>
 <section>
 
+<div class="hl-block left-align">
+
+### Views
+
+- Offer lazily-evaluated, composable algorithm syntax.
+- Rarely make any copies; just compose transformations.
+- Also support "infinite" "containers" (e.g. `std::views::iota`).
+
+</div>
+
+</section>
+<section>
+
 ```c++ []
 auto TrimFront(std::string const& str) {
     return std::string{ std::find_if(str.begin(), str.end(), 
@@ -77,18 +90,5 @@ std::string TrimString(std::string const& str) {
     return str | Trim | rangesnext::to<std::string>;
 }
 ```
-
-</section>
-<section>
-
-<div class="hl-block left-align">
-
-### Views
-
-- Offer lazily-evaluated, composable algorithm syntax.
-- Rarely make any copies; just compose transformations.
-- Also support "infinite" "containers" (e.g. `std::views::iota`).
-
-</div>
 
 </section>
