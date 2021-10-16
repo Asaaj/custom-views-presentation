@@ -88,7 +88,26 @@ public:
 </section>
 <section>
 
-[Insert graphic]
+```c++ [|7,13-17]
+class inner_iterator
+{
+    /* ... */
+    
+    inner_iterator(all_pairs_view const& parent, base_iterator const& current)
+		: _current_outer{ current }
+		, _current_inner{ std::ranges::begin(parent.base()) }
+		, _base_end_cache{ std::ranges::end(parent.base()) }
+	{
+		correct_inner_if_needed();
+	}
+	
+    [[nodiscard]] bool operator==(inner_iterator const& rhs) const
+	{
+		return _current_outer == rhs._current_outer &&
+		       _current_inner == rhs._current_inner;
+	}
+};
+```
 
 </section>
 <section>

@@ -83,7 +83,7 @@ auto const x = <i>some_range</i> | reversed_evens;
 
 <div class="hl-block left-align">
 
-### Range Adaptor Closure Objects [24.7.1.1]
+### Range Adaptor Closure Objects <span style="font-size: 40px;">[24.7.2.1]</span>
 
 A _range adaptor closure object_ is a <span class="fragment hl-text" data-fragment-index="1">unary function object that accepts a
 `viewable_range` argument and returns a `view`</span>. For a range adaptor closure object `C` and an expression `R` such
@@ -98,13 +98,15 @@ that `decltype((R))` models `viewable_range`, the following expressions are equi
 <section>
 <div class="hl-block left-align">
 
-### Range Adaptor Closure Objects [24.7.1.1]
+### Range Adaptor Closure Objects <span style="font-size: 40px;">[24.7.2.1]</span>
 
 Given an additional range adaptor closure object `D`, the expression <span class="fragment hl-text" data-fragment-index="1">
-<code>C&nbsp;|&nbsp;D</code></span> is well-formed and
-<span class="fragment hl-text" data-fragment-index="1">produces another range adaptor closure object</span> such that
-the following two expressions are equivalent:
+<code>C&nbsp;|&nbsp;D</code> produces another range adaptor closure object `E`</span>.
 
+<span class="fragment hl-text" data-fragment-index="2">**Simplification**</span>: The following expressions are 
+equivalent:
+- <span class="fragment hl-text" data-fragment-index="2">`E(R)`</span>
+- <span class="fragment hl-text" data-fragment-index="2">`D(C(R))`</span>
 - <span class="fragment hl-text" data-fragment-index="2">`R | C | D`</span>
 - <span class="fragment hl-text" data-fragment-index="2">`R | (C | D)`</span>
 
@@ -115,10 +117,13 @@ the following two expressions are equivalent:
 
 <div class="hl-block left-align">
 
-### Range Adaptor Objects [24.7.1.2-4]
+### Range Adaptor Objects <span style="font-size: 40px;">[24.7.2.2-4]</span>
 
 A _range adaptor object_ is a customization point object that <span class="fragment hl-text">accepts a `viewable_range`
 as its first argument and returns a `view`.</span>
+
+<span class="fragment hl-text">If a range adaptor object accepts only one argument, then it is a
+range adaptor closure object.</span>
 
 </div>
 
@@ -127,19 +132,14 @@ as its first argument and returns a `view`.</span>
 
 <div class="hl-block left-align">
 
-### Range Adaptor Objects [24.7.1.2-4]
+### Range Adaptor Objects <span style="font-size: 40px;">[24.7.2.2-4]</span>
 
-<span class="fragment hl-text" data-fragment-index="1">If a range adaptor object accepts only one argument, then it is a
-range adaptor closure object.</span>
+If a range adaptor object `adaptor` accepts <span class="fragment hl-text" data-fragment-index="1">more than one 
+argument</span>, then:
 
-If a range adaptor object accepts <span class="fragment hl-text" data-fragment-index="2">more than one argument</span>, 
-then the following expressions are equivalent:
-
-- `adaptor(range, args...)`
-- `adaptor(args...)(range)`
-- `range | adaptor(args...)`
-
-<span class="fragment hl-text" data-fragment-index="3">In this case, `adaptor(args...)` is a range adaptor closure object.</span>
+<span class="fragment hl-text" data-fragment-index="2">[**Simplification**]</span> let `args...` 
+be arguments such that the expression <code>adaptor(R,&nbsp;args...)</code> produces a `view`. In this case, 
+<span class="fragment hl-text" data-fragment-index="2">`adaptor(args...)` is a range adaptor closure object.</span>
 
 </div>
 

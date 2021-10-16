@@ -264,7 +264,7 @@ void f(T& t)
     </div>
     <div class="fragment" data-fragment-index="2">
         <p class="correction handwriting"
-           style="top: -200px; left: 850px; text-align: right;">with C++20<br />^</p>
+           style="top: -200px; left: 780px; text-align: right;">with C++20<br />^</p>
     </div>
 </div>
 

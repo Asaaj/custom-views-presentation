@@ -21,7 +21,7 @@ If you want more, read this:
 
 _noun_
 
-> A type which acts like a reference for another type, even when it’s an r-value.
+> A type which provides read (and write) operations for another type, even when it’s an rvalue.
 
 </div>
 
@@ -48,7 +48,7 @@ _noun_
 <code class="cpp" data-noescape data-trim>std::vector&lt;<span class="hljs-keyword">bool</span>&gt;::iterator</code>:
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
-- Dereference returns r-value of type <code class="cpp" data-noescape data-trim>vector&lt;<span class="hljs-keyword">bool</span>&gt;::reference</code>.
+- Dereference returns rvalue of type <code class="cpp" data-noescape data-trim>vector&lt;<span class="hljs-keyword">bool</span>&gt;::reference</code>.
 
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
@@ -59,7 +59,7 @@ _noun_
 `all_pairs_view::inner_iterator`:
 <!-- .element: class="fragment" data-fragment-index="2" -->
 
-- Dereference returns an r-value of type `std::pair<T&, T&>`.
+- Dereference returns an rvalue of type `std::pair<T&, T&>`.
 
 <!-- .element: class="fragment" data-fragment-index="2" -->
 
@@ -132,7 +132,7 @@ Before C++20, everything was confusing:
 
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
-- `ForwardIterator::reference` must be an l-value reference.
+- `ForwardIterator::reference` must be an lvalue reference.
 
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
@@ -144,7 +144,7 @@ Before C++20, everything was confusing:
 C++20 makes iterators easier:
 <!-- .element: class="fragment" data-fragment-index="2" -->
 
-- Non-l-value proxy reference types are actually supported.
+- Non-lvalue proxy reference types are actually supported.
 
 <!-- .element: class="fragment" data-fragment-index="2" -->
 
@@ -158,7 +158,7 @@ C++20 makes iterators easier:
 <section>
 
 <div class="hl-block pretty-big-text">
-What else is required for proxy iterators to work?
+What else is required for<br/>proxy iterators to work?
 </div>
 
 </section>

@@ -35,8 +35,7 @@ https://github.com/ericniebler/range-v3
         <td>
             <ul>
                 <li>A specific type of range.</li>
-                <li><b>O(1) move/destroy.</b></li>
-                <li>O(1) copy (if copyable).</li>
+                <li>Can be used in range adaptor pipelines.</li>
                 <li><code>ranges::enable_view&lt;T></code> is true.</li>
             </ul>
         </td>
@@ -68,9 +67,30 @@ concept view = ranges::range&lt;T&gt; &&
 
 <aside class="notes">
 
-Note that the requirements for views just changed in May, in P2325.
+Note that the requirements for views changed in May, in P2325, and again in October, in P2415.
 
 </aside>
+
+</section>
+<section>
+<div class="hl-block left-align">
+
+## **range adaptor pipeline**
+
+_noun_
+
+> Composed range transformations that evaluate lazily as the resulting view is iterated.
+
+</div>
+
+</section>
+<section>
+
+```c++ [2]
+using namespace std::views;
+for (int i : iota(2) | filter(even) | transform(square))
+	std::cout << i << ' ';
+```
 
 </section>
 <section>
@@ -87,8 +107,8 @@ Note that the requirements for views just changed in May, in P2325.
     <tr>
         <td>
             <ul>
-                <li>A view that "points at" a range.</li>
-                <li>Requires a range for input.</li>
+                <li>A view that takes a range as input.</li>
+                <li>Represents the range in a different way.</li>
                 <li>Most views are adaptors.</li>
             </ul>
         </td>
@@ -119,11 +139,5 @@ auto b = istream_view&lt;std::string&gt;(words);
         </td>
     </tr>
 </table>
-
-<aside class="notes">
-And this makes sense, right? If you think about the different ways you might represent a *range* that is constant-time
-copyable, it must be either by not owning the data (so it just contains a limited number of pointers to the real data),
-or by generating the data on demand. And that's exactly what these two do.
-</aside>
 
 </section>

@@ -19,7 +19,7 @@ void SwapIters(I lhs, I rhs)
 
 <div class="hl-block code-note fragment" style="top: -200px;">
 
-Proxy reference type could be `pair<T&,T&>`, so this just swapped two r-values.
+Proxy reference type could be `pair<T&,T&>`, so this just swapped two rvalues.
 
 </div>
 
@@ -72,7 +72,7 @@ std::iter_value_t<I> Extract(I iter)
 
 <div class="hl-block code-note fragment" style="top: -200px;">
 
-Proxy reference type could be `pair<T&,T&>`, so this moved an r-value.
+Proxy reference type could be `pair<T&,T&>`, so this moved an rvalue.
 
 </div>
 
