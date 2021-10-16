@@ -88,19 +88,22 @@ public:
 </section>
 <section>
 
-```c++ [|7,13-17]
+<div class="hl-block medium-text">
+
+The `end` iterator of every `inner_view`<br/>would be different.
+
+</div>
+
+<img src="images/inner-end-iter.png" alt="inner_view end iterator"
+     width="400" />
+
+</section>
+<section>
+
+```c++ []
 class inner_iterator
 {
     /* ... */
-    
-    inner_iterator(all_pairs_view const& parent, base_iterator const& current)
-		: _current_outer{ current }
-		, _current_inner{ std::ranges::begin(parent.base()) }
-		, _base_end_cache{ std::ranges::end(parent.base()) }
-	{
-		correct_inner_if_needed();
-	}
-	
     [[nodiscard]] bool operator==(inner_iterator const& rhs) const
 	{
 		return _current_outer == rhs._current_outer &&

@@ -80,6 +80,8 @@ Note that the requirements for views changed in May, in P2325, and again in Octo
 _noun_
 
 > Composed range transformations that evaluate lazily as the resulting view is iterated.
+> 
+> Pipelines are cheap to create; "real" work is done during iteration.
 
 </div>
 
