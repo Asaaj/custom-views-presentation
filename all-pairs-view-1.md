@@ -1,4 +1,4 @@
-<section data-background-image="images/planet-transformation.png" data-background-size="contain">
+<section data-background-image="images/planet-transformation-bracket.png" data-background-size="contain">
 </section>
 <section>
 

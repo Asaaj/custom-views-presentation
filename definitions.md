@@ -35,7 +35,8 @@ https://github.com/ericniebler/range-v3
         <td>
             <ul>
                 <li>A specific type of range.</li>
-                <li><b>Constant-time copy/move/assign.</b></li>
+                <li><b>O(1) move/destroy.</b></li>
+                <li>O(1) copy (if copyable).</li>
                 <li><code>ranges::enable_view&lt;T></code> is true.</li>
             </ul>
         </td>

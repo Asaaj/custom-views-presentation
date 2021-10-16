@@ -258,7 +258,7 @@ void f(T& t)
         </p>
     </div>
     <div class="fragment" data-fragment-index="1"
-         style="position: absolute; top: 90px; left: 500px; width: 670px; height: 10px; background-color: #DA3939; box-shadow: 0 0 7px #000000A0;"></div>
+         style="position: absolute; top: 80px; left: 515px; width: 610px; height: 10px; background-color: #DA3939; box-shadow: 0 0 7px #000000A0;"></div>
     <div class="fragment" data-fragment-index="1">
         <h2 class="correction" style="top: -60px; left: 550px;">that conforms</h2>
     </div>

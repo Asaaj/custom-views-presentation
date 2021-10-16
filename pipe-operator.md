@@ -27,7 +27,7 @@ for (int i : iota(2) | filter(even) | transform(square))
 <section>
 
 <pre><code class="cpp" data-noescape data-trim data-line-numbers="|1|2|1">
-auto const reversed_evens = std::views::filter(even) | std::views::reverse;
+auto const reversed_evens = std::views::reverse | std::views::filter(even);
 auto const x = <i>some_range</i> | reversed_evens;
 </code></pre>
 
@@ -74,7 +74,7 @@ auto const x = <i>some_range</i> | reversed_evens;
 <section>
 
 <pre><code class="cpp" data-noescape data-trim data-line-numbers="1">
-auto const reversed_evens = std::views::filter(even) | std::views::reverse;
+auto const reversed_evens = std::views::reverse | std::views::filter(even);
 auto const x = <i>some_range</i> | reversed_evens;
 </code></pre>
 
@@ -147,7 +147,7 @@ then the following expressions are equivalent:
 <section>
 
 <pre><code class="cpp" data-noescape data-trim data-line-numbers="1|2">
-auto const reversed_evens = std::views::filter(even) | std::views::reverse;
+auto const reversed_evens = std::views::reverse | std::views::filter(even);
 auto const x = <i>some_range</i> | reversed_evens;
 </code></pre>
 

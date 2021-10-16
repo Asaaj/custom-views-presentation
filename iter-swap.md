@@ -204,9 +204,18 @@ public:
 ```
 
 </section>
+<section data-background-image="images/problem-with-iter-move-1.png" data-background-size="contain">
+</section>
+<section data-background-image="images/problem-with-iter-move-2.png" data-background-size="contain">
+</section>
+<section data-background-image="images/problem-with-iter-move-3.png" data-background-size="contain">
+</section>
 <section>
 
-[Insert diagram to demonstrate cycling view problem.]
+<div class="hl-block pretty-big-text">
+
+Views that expose elements multiple times can't use `iter_move`.
+
+</div>
 
 </section>
-

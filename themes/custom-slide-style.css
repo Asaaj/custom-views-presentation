@@ -124,7 +124,7 @@ div.hl-block li code{
     border-bottom: 5px solid #0085A8;
     text-align: center;
     font-family: 'Roboto Slab', serif;
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 400;
 }
 
@@ -231,11 +231,11 @@ aside.subtle {
 }
 
 .pretty-big-text {
-    font-size: 80px;
+    font-size: 70px;
 }
 
 .medium-text {
-    font-size: 65px;
+    font-size: 55px;
 }
 
 .left-align {
@@ -263,6 +263,14 @@ aside.subtle {
 .reveal h6 {
     text-transform: none;
     font-family: 'Roboto Slab', serif;
+}
+
+.reveal h2 {
+    font-size: 75px;
+}
+
+.reveal h3 {
+    font-size: 65px;
 }
 
 .reveal h6 {
@@ -311,6 +319,13 @@ aside.subtle {
     height: 710px;
     margin: 0 !important;
     object-fit: contain;
+}
+
+@media print {
+    .slide-background {
+        background-color: var(--r-background-color) !important;
+        -webkit-print-color-adjust: exact;
+    }
 }
 
 /*.fill {*/
