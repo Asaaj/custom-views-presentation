@@ -15,6 +15,16 @@
 
 </div>
 
+<aside class="notes">
+
+**Read slide**
+
+I really like writing library code, but I'm not a maintainer of any big open-source projects or anything like that. 
+That's what I mean when I say "custom views for the rest of us"; I want to show that views are actually quite 
+approachable, even for those of us who don't do this kind of thing all the time.
+
+</aside>
+
 </section>
 <section>
 
@@ -25,6 +35,15 @@ for (int i : iota(2) | filter(even) | transform(square))
 ``` 
 
 <div class="huge-text">🎉🎆🎊</div>
+
+<aside class="notes">
+
+Here's an example of C++20's views in action. They offer this clean, composable, lazily-evaluated syntax for writing
+common algorithms, but when you first see them, they kind of look like magic. They have a very different syntax from 
+anything else in the STL, so it may seem daunting to first take a look under the hood. To make it more approachable, I 
+tried implementing my own view, and I want to share that process with you. Let's start with the motivating example.
+
+</aside>
 
 </section>
 <section data-background-image="images/solar-system.png" data-background-size="contain">
