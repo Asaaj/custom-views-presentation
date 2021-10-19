@@ -7,13 +7,6 @@ What is a <code>view</code>?
 </section>
 <section>
 
-<div class="hl-block medium-text">
-https://github.com/ericniebler/range-v3
-</div>
-
-</section>
-<section>
-
 <table class="hl-block compare-columns">
     <colgroup>
         <col style="width: 50%" />
@@ -36,6 +29,7 @@ https://github.com/ericniebler/range-v3
             <ul>
                 <li>A specific type of range.</li>
                 <li>Can be used in range adaptor pipelines.</li>
+                <li>O(1) move (and maybe copy) construction.</li>
                 <li><code>ranges::enable_view&lt;T></code> is true.</li>
             </ul>
         </td>

@@ -31,7 +31,7 @@ This has always been an awkward pattern:
 
 - `swap`, `begin`, and `end` are "customization points".
 - Special behavior for user types.
-- Custom versions can't enforce concepts.
+- Used Argument-Dependent Lookup (ADL) to find user version.
 - Much easier to get wrong than right.
 
 </div>

@@ -30,7 +30,53 @@ A view is often just a supplier<br/>of a very fancy iterator.
 </section>
 <section>
 
-```c++ [|7]
+```c++ [|17]
+template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
+class all_pairs_view :
+	public std::ranges::view_interface<all_pairs_view<TBase>>
+{
+private:
+	TBase _vw;
+	class inner_iterator { /* ... */ };
+	class inner_sentinel { /* ... */ };
+	class inner_view { /* ... */ };
+ 
+	class outer_iterator { /* ... */ };
+ 
+public:
+	using iterator = outer_iterator;
+ 
+	all_pairs_view() = default;
+	constexpr all_pairs_view(TBase vw);
+ 
+	[[nodiscard]] constexpr iterator begin() const;
+	[[nodiscard]] constexpr iterator end() const;
+};
+```
+
+</section>
+<section>
+
+```c++ [|12-13]
+template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
+class all_pairs_view :
+	public std::ranges::view_interface<all_pairs_view<TBase>>
+{
+    /* ... */
+	
+	constexpr all_pairs_view(TBase vw) : _vw{ std::move(vw) } { }
+    
+    /* ... */
+};
+
+template <class Rng>
+all_pairs_view(Rng&&) -> all_pairs_view<std::views::all_t<Rng>>;
+```
+
+</section>
+<section>
+
+```c++ [17|7]
 template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
 	public std::ranges::view_interface<all_pairs_view<TBase>>

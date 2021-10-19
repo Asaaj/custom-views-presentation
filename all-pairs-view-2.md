@@ -81,7 +81,7 @@ public:
 </section>
 <section>
 
-```c++ [1-20|22-39|39]
+```c++ [1-20|22-37]
 class outer_iterator
 {
 private:
@@ -119,14 +119,12 @@ public:
 		return _parent == rhs._parent && _current == rhs._current;
 	}
 };
-
-static_assert(std::input_iterator<outer_iterator>);
 ```
 
 </section>
 <section>
 
-```c++ [|6|6,7]
+```c++ [|7]
 class outer_iterator
 {
 	/* ... */
@@ -143,17 +141,98 @@ public:
 </section>
 <section>
 
-[Insert graphic]
+### Pre-C++20
+
+```c++ [|5,10]
+template <class I>
+struct iterator_traits<I, void_t<typename I::iterator_category, 
+                                 typename I::difference_type,
+                                 typename I::value_type, 
+                                 typename I::pointer, 
+                                 typename I::reference>> {
+    using iterator_category = typename I::iterator_category;
+    using difference_type   = typename I::difference_type;
+    using value_type        = typename I::value_type;
+    using pointer           = typename I::pointer;
+    using reference         = typename I::reference;
+};
+```
 
 </section>
 <section>
 
-```c++ [|4-5,11]
+### C++20
+
+```c++ [|1-3|10]
+template <class I>
+concept has_iter_types = has_member_difference_type<I> && has_member_value_type<I> && 
+                         has_member_reference<I> && has_member_iterator_category<I>;
+ 
+template <has_iter_types I>
+struct iterator_traits<I> {
+    using iterator_category = typename I::iterator_category;
+    using difference_type   = typename I::difference_type;
+    using value_type        = typename I::value_type;
+    using pointer           = /* I::pointer if defined, void otherwise */
+    using reference         = typename I::reference;
+};
+```
+
+</section>
+<section>
+
+```c++ []
+class outer_iterator
+{
+	/* ... */
+public:
+	using value_type = inner_view;
+	using reference = value_type;
+	using difference_type = std::ptrdiff_t;
+	using iterator_category = std::forward_iterator_tag;
+	/* ... */
+};
+```
+
+</section><section>
+
+```c++ [|6]
+class outer_iterator
+{
+	/* ... */
+public:
+	using value_type = inner_view;
+	using reference = value_type; // Why isn’t this "value_type&"?
+	using pointer = value_type*;
+	using difference_type = std::ptrdiff_t;
+	using iterator_category = std::forward_iterator_tag;
+	/* ... */
+};
+```
+
+</section>
+<section>
+
+```c++ []
+class outer_iterator
+{
+    using reference = value_type;
+    
+	[[nodiscard]] value_type operator*() const
+	{
+		return inner_view{ *_parent, _current };
+	}
+};
+```
+
+</section>
+<section>
+
+```c++ [|4,10]
 class outer_iterator
 {
 	using value_type = inner_view;
 	using reference = value_type;
-	using pointer = value_type*;
 };
 
 class inner_iterator

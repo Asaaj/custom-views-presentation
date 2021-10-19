@@ -100,15 +100,18 @@ The `end` iterator of every `inner_view`<br/>would be different.
 </section>
 <section>
 
-```c++ []
+```c++ [|6]
 class inner_iterator
 {
     /* ... */
-    [[nodiscard]] bool operator==(inner_iterator const& rhs) const
+    inner_iterator(all_pairs_view const& parent, base_iterator const& current)
+		: _current_outer{ current }
+		, _current_inner{ std::ranges::begin(parent.base()) }
+		, _base_end_cache{ std::ranges::end(parent.base()) }
 	{
-		return _current_outer == rhs._current_outer &&
-		       _current_inner == rhs._current_inner;
+		correct_inner_if_needed();
 	}
+    /* ... */
 };
 ```
 

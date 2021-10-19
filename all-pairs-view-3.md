@@ -2,7 +2,7 @@
 </section>
 <section>
 
-```c++ [11|17-21]
+```c++ [11|19-21]
 template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
 	public std::ranges::view_interface<all_pairs_view<TBase>>
@@ -29,14 +29,13 @@ public:
 </section>
 <section>
 
-```c++ [|19-20]
+```c++ []
 template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
 	public std::ranges::view_interface<all_pairs_view<TBase>>
 {
     /* ... */
-	constexpr all_pairs_view(TBase vw) : _vw{ std::move(vw) } { }
-
+    
 	[[nodiscard]] constexpr iterator begin() const
 	{
 		return { *this, std::ranges::begin(_vw) };
@@ -47,9 +46,6 @@ class all_pairs_view :
 		return { *this, std::ranges::end(_vw) };
 	}
 };
-
-template <class Rng>
-all_pairs_view(Rng&&) -> all_pairs_view<std::views::all_t<Rng>>;
 ```
 
 </section>
