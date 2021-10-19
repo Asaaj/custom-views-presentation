@@ -6,14 +6,12 @@
 
 - Software Engineer at Keysight Technologies, Inc.
 - High Performance Oscilloscope Software Team
-- Love writing library code
+- Contact: jacob@rice.systems
 
 <center>
     <img src="images/keysight-logo.png" width="400" style="margin-top: 30px"
          alt="Keysight Technologies, Inc." />
 </center>
-
-Contact: jacob@rice.systems
 
 </div>
 
