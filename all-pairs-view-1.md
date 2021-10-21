@@ -24,7 +24,7 @@ public:
 <section>
 
 <div class="hl-block pretty-big-text">
-A view is often just a supplier<br/>of a very fancy iterator.
+A view is usually just a supplier<br/>of a fancy iterator.
 </div>
 
 </section>
@@ -103,7 +103,7 @@ public:
 </section>
 <section>
 
-```c++ [|18]
+```c++ [|8,13|9,14|16|]
 class inner_iterator
 {
 private:
@@ -113,18 +113,24 @@ private:
 	using base_sentinel = std::ranges::sentinel_t<TBase>;
 	using base_value_type = std::ranges::range_value_t<TBase>;
 	using base_reference = std::ranges::range_reference_t<TBase>;
-	using base_pointer = std::add_pointer_t<base_value_type>;
     /* ... */
 
 public:
 	using value_type = std::pair<base_value_type, base_value_type>;
 	using reference = std::pair<base_reference, base_reference>;
-	using pointer = std::pair<base_pointer, base_pointer>;
 	using difference_type = std::ptrdiff_t;
 	using iterator_category = std::forward_iterator_tag;
 	/* ... */
 };
 ```
+
+<aside class="notes">
+
+You may notice I don't define "pointer" here. Before C++20, we had to define 5 types, these 4 plus pointer, in order to
+be considered an iterator. Now, if pointer doesn't make sense for your iterator type, you don't actually have to define
+it.
+
+</aside>
 
 </section>
 <section>
@@ -155,7 +161,7 @@ public:
 </section>
 <section>
 
-```c++ [16-22|31-44|46-58|53|46-58|60-66]
+```c++ [15-21|29-42|44-56|51|44-56|58-64]
 class inner_iterator
 {
 private:
@@ -165,7 +171,6 @@ private:
 	using base_sentinel = std::ranges::sentinel_t<TBase>;
 	using base_value_type = std::ranges::range_value_t<TBase>;
 	using base_reference = std::ranges::range_reference_t<TBase>;
-	using base_pointer = std::add_pointer_t<std::add_const_t<base_value_type>>;
 
 	base_iterator _current_outer{};
 	base_iterator _current_inner{};
@@ -182,7 +187,6 @@ private:
 public:
 	using value_type = std::pair<base_value_type, base_value_type>;
 	using reference = std::pair<base_reference, base_reference>;
-	using pointer = std::pair<base_pointer, base_pointer>;
 	using difference_type = std::ptrdiff_t;
 	using iterator_category = std::forward_iterator_tag; // TODO
 
@@ -249,31 +253,6 @@ public:
  
 	[[nodiscard]] constexpr iterator begin() const;
 	[[nodiscard]] constexpr iterator end() const;
-};
-```
-
-</section>
-<section>
-
-```c++ [|6]
-class inner_sentinel
-{
-public:
-	[[nodiscard]] bool operator==(inner_sentinel const&) const
-	{
-		return true;
-	}
- 
-	[[nodiscard]] bool operator==(inner_iterator const& rhs) const
-	{
-		return rhs._current_inner == rhs._base_end_cache;
-	}
-
-    /* As of C++20, the compiler uses this^ to generate these:
-     *    sentinel != iterator
-     *    iterator == sentinel
-     *    iterator != sentinel
-     */
 };
 ```
 

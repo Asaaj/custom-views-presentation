@@ -21,8 +21,6 @@
 	<!-- All the formatting specifically for this presentation.
 	     I make no guarantees about the quality or usefulness elsewhere. -->
 	<link rel="stylesheet" href="themes/custom-slide-style.css">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -31,6 +29,9 @@ Thoughts:
     - A good reason to use sentinels: it signals that you have C++20 requirements. Especially if you wrote a proxy
       iterator, a sentinel will ensure that doesn't work with old generic code that won't properly handle proxies.
     - Define viewable_range
+    - Need a conclusion
+    - Discuss why an iterator shouldn't own its data (all-pairs-view-2)
+    - Tell the audience about question preferences
 -->
 
 	<div class="reveal">
@@ -61,6 +62,7 @@ Thoughts:
 			<section data-markdown="all-pairs-view-3.md"></section>
 			<section data-markdown="pipe-operator.md"></section>
 			<section data-markdown="customizing-pipe-operator.md"></section>
+			<section data-markdown="conclusion.md"></section>
 		</div>
 	</div>
 
@@ -87,10 +89,6 @@ Thoughts:
 			},
 
 			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-		}).then(() => {
-			// $("section.aside-slide").prepend(
-			// 		"<p class='aside-tag'>[aside]</p>"
-			// );
 		});
 	</script>
 </body>

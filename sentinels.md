@@ -63,39 +63,11 @@ Let `s` and `i` be values of type `S` and `I`, respectively, such that `[i, s)` 
 </section>
 <section>
 
-```c++ [1,4-7]
-class inner_sentinel
-{
-public:
-	[[nodiscard]] bool operator==(inner_sentinel const&) const
-	{
-		return true;
-	}
- 
-	[[nodiscard]] bool operator==(inner_iterator const& rhs) const
-	{
-		return rhs._current_inner == rhs._base_end_cache;
-	}
+<div class="hl-block pretty-big-text">
 
-    /* As of C++20, the compiler uses this^ to generate these:
-     *    sentinel != iterator
-     *    iterator == sentinel
-     *    iterator != sentinel
-     */
-};
-```
-
-</section>
-<section>
-
-<div class="hl-block medium-text">
-
-The `end` iterator of every `inner_view`<br/>would be different.
+Why use a sentinel instead<br/>of an `end` iterator?
 
 </div>
-
-<img src="images/inner-end-iter.png" alt="inner_view end iterator"
-     width="400" />
 
 </section>
 <section>
@@ -114,6 +86,9 @@ class inner_iterator
     /* ... */
 };
 ```
+
+<img src="images/inner-end-iter.png" alt="inner_view end iterator"
+     width="300" />
 
 </section>
 <section>

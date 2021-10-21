@@ -75,7 +75,9 @@ concept GravitationalRange = GravitationalBody<std::ranges::range_value_t<T>>;
 <section>
 
 <div class="fragment">
-This can be done with a <code>transform_reduce</code>:
+
+#### This can be done with a <code>transform_reduce</code>:
+
 </div>
 
 ```python

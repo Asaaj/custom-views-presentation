@@ -128,8 +128,8 @@ auto b = filter_view{ a, even };
         <td>
             <pre>
                 <code class="cpp">using namespace std::ranges;
-auto a = views::iota(1, 10);
-auto b = istream_view&lt;std::string&gt;(words);
+auto a = iota_view{ 1, 10 };
+auto b = istream_view&lt;std::string&gt;{ words };
 </code>
             </pre>
         </td>
