@@ -142,6 +142,33 @@ div.hl-block li code{
     border-left: none;
 }
 
+.compare-columns td i {
+    font-style: italic !important;
+}
+
+.compare-columns td.cell-right-align,
+.compare-columns th.cell-right-align {
+    text-align: right;
+}
+
+.compare-columns th.cell-right-align {
+    padding-right: 50px;
+}
+
+.compare-columns td.cell-left-align,
+.compare-columns th.cell-left-align {
+    text-align: left;
+}
+
+.compare-columns th.cell-left-align {
+    padding-left: 50px;
+}
+
+.compare-columns.conclusion td {
+    padding-bottom: 10px;
+    padding-top: 30px;
+}
+
 /* Memory bytes in a table form */
 .byte-layout td {
     color: #0E1B1E;

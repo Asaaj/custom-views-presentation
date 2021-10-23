@@ -197,7 +197,7 @@ public:
 	using value_type = std::pair<base_value_type, base_value_type>;
 	using reference = std::pair<base_reference, base_reference>;
 	using difference_type = std::ptrdiff_t;
-	using iterator_category = std::forward_iterator_tag; // TODO
+	using iterator_category = std::forward_iterator_tag;
 
 	inner_iterator() = default;
 
