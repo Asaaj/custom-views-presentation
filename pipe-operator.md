@@ -94,6 +94,10 @@ that `decltype((R))` models `viewable_range`, the following expressions are equi
 
 </div>
 
+<aside class="notes">
+A viewable_range just defines a range which it is safe to convert to a view. 
+</aside>
+
 </section>
 <section>
 <div class="hl-block left-align">

@@ -6,7 +6,7 @@
 
 - Software Engineer at Keysight Technologies, Inc.
 - High Performance Oscilloscope Software Team
-- Contact: jacob@rice.systems
+- Contact: jacob.rice.cpp@gmail.com
 
 <center>
     <img src="images/keysight-logo.png" width="400" style="margin-top: 30px"
@@ -114,6 +114,9 @@ FVector GetForceOnBody(TThisBody const& thisBody,
 This is a code smell. It's not a big smell, it's not like a dumpster. It's more like when you catch a whiff of your 
 kitchen trash and think "I should probably take that out". But this is going to be the inspiration for a different 
 solution.
+
+This line is telling me that the input data to my algorithm is wrong. If my algorithm has to correct the data it's 
+getting, that means it's getting the wrong data. I want the algorithm to just do the calculation.
 </aside>
 
 </section>

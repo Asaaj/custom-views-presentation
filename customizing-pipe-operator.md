@@ -60,28 +60,35 @@ inline constexpr detail::all_pairs_fn all_pairs;
 </section>
 <section>
 
-<pre><code class="cpp" data-noescape data-trim data-line-numbers="">
+```c++ [|1-7|9-18|20]
 namespace detail
 {
-template &lt;class T>
+template <class T>
 concept can_construct_all_pairs_view = requires(T&& t)
 {
-	all_pairs_view{ static_cast&lt;T&&>(t) };
+	all_pairs_view{ static_cast<T&&>(t) };
 };
  
-struct all_pairs_fn : public std::ranges::range_adaptor_closure&lt;all_pairs_fn>
+struct all_pairs_fn : public std::ranges::range_adaptor_closure<all_pairs_fn>
 {
-	template &lt;std::ranges::viewable_range Rng>
+	template <std::ranges::viewable_range Rng>
 	[[nodiscard]] constexpr auto operator()(Rng&& rng) const
-		requires can_construct_all_pairs_view&lt;Rng>
+		requires can_construct_all_pairs_view<Rng>
 	{
-		return all_pairs_view{ std::forward&lt;Rng>(rng) };
+		return all_pairs_view{ std::forward<Rng>(rng) };
 	}
 };
 } // namespace detail
  
 inline constexpr detail::all_pairs_fn all_pairs;
+```
 
-</code></pre>
+<aside class="notes">
+The first thing we see is a concept. I don't know if this pattern has a name, but I like to call it a "deferring 
+concept". Essentially this says "as long as T satisfies whatever constraints all_pairs_view uses in its constructor, T 
+works in this case too." It lets us avoid repeating concepts, and just define the input requirements in one place.
+
+
+</aside>
 
 </section>

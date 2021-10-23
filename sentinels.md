@@ -36,17 +36,6 @@
 </section>
 <section>
 
-<pre><code class="cpp" data-trim data-noescape data-line-numbers="|1-2|1-3|1-4|1-5">
-template &lt;class S, class I&gt;
-concept sentinel_for =
-	std::semiregular&lt;S&gt; &&
-	std::input_or_output_iterator&lt;I&gt; &&
-	<i>__WeaklyEqualityComparableWith</i>&lt;S, I&gt;;
-</code></pre>
-
-</section>
-<section>
-
 <div class="hl-block left-align" style="font-size: 35px;">
 
 ### Sentinel semantic requirements:
@@ -63,6 +52,42 @@ Let `s` and `i` be values of type `S` and `I`, respectively, such that `[i, s)` 
 </section>
 <section>
 
+<pre><code class="cpp" data-trim data-noescape data-line-numbers="|1-2|1-3|1-4|1-5">
+template &lt;class S, class I&gt;
+concept sentinel_for =
+	std::semiregular&lt;S&gt; &&
+	std::input_or_output_iterator&lt;I&gt; &&
+	<i>__WeaklyEqualityComparableWith</i>&lt;S, I&gt;;
+</code></pre>
+
+</section>
+<section>
+
+```c++ []
+class inner_sentinel
+{
+public:
+	[[nodiscard]] bool operator==(inner_sentinel const&) const
+	{
+		return true;
+	}
+ 
+	[[nodiscard]] bool operator==(inner_iterator const& rhs) const
+	{
+		return rhs._current_inner == std::ranges::end(*rhs._base);
+	}
+
+    /* As of C++20, the compiler uses this^ to generate these:
+     *    sentinel != iterator
+     *    iterator == sentinel
+     *    iterator != sentinel
+     */
+};
+```
+
+</section>
+<section>
+
 <div class="hl-block pretty-big-text">
 
 Why use a sentinel instead<br/>of an `end` iterator?
@@ -72,14 +97,14 @@ Why use a sentinel instead<br/>of an `end` iterator?
 </section>
 <section>
 
-```c++ [|6]
+```c++ [|6,9]
 class inner_iterator
 {
     /* ... */
-    inner_iterator(all_pairs_view const& parent, base_iterator const& current)
-		: _current_outer{ current }
-		, _current_inner{ std::ranges::begin(parent.base()) }
-		, _base_end_cache{ std::ranges::end(parent.base()) }
+    inner_iterator(TBase const& base, base_iterator current_outer)
+		: _current_outer{ std::move(current_outer) }
+		, _current_inner{ std::ranges::begin(base) }
+		, _base{ std::addressof(base) }
 	{
 		correct_inner_if_needed();
 	}
@@ -87,17 +112,42 @@ class inner_iterator
 };
 ```
 
-<img src="images/inner-end-iter.png" alt="inner_view end iterator"
-     width="300" />
+</section>
+<section>
+
+```c++ [|5,7,10]
+class inner_iterator
+{
+    /* ... */
+    inner_iterator(TBase const& base, base_iterator current_outer, 
+                   base_iterator current_inner)
+		: _current_outer{ std::move(current_outer) }
+		, _current_inner{ std::move(current_inner) }
+		, _base{ std::addressof(base) }
+	{
+		correct_inner_if_needed(); // Feels a bit like a lie...
+	}
+    /* ... */
+};
+```
 
 </section>
 <section>
 
-<div class="hl-block">
+<div class="hl-block pretty-big-text">
 
-### Sentinels separate concerns.
+This constructor is only for `end()` to use,<br/>but nothing actually tells us that.
 
-#### Any nontrivial "end" logic has its own class.
+</div>
+
+</section>
+<section>
+
+<div class="hl-block pretty-big-text">
+
+Sentinels separate concerns.
+
+The definition of "end" is in its own class.
 
 </div>
 

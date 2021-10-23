@@ -7,6 +7,17 @@ What is a <code>view</code>?
 </section>
 <section>
 
+#### Easy to access:
+
+```c++ []
+namespace std {
+	namespace views = ranges::views;
+}
+```
+
+</section>
+<section>
+
 <table class="hl-block compare-columns">
     <colgroup>
         <col style="width: 50%" />

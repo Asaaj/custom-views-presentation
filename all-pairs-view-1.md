@@ -2,7 +2,7 @@
 </section>
 <section>
 
-```c++ [|8]
+```c++ [|1-3||8]
 template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
 	public std::ranges::view_interface<all_pairs_view<TBase>> // CRTP!
@@ -20,6 +20,15 @@ public:
 };
 ```
 
+<aside class="notes">
+So here is the view, or at least a high-level description. I would like to initially say that this is not a production-
+ready view; it's only slide-ready. There are details and use cases that are not included in this slide version, but I 
+hope this gets enough across to show there's no magic.
+
+**CLICK** \[Describe inputs and template types\]
+
+</aside>
+
 </section>
 <section>
 
@@ -30,7 +39,7 @@ A view is usually just a supplier<br/>of a fancy iterator.
 </section>
 <section>
 
-```c++ [|17]
+```c++ [|6,17]
 template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
 	public std::ranges::view_interface<all_pairs_view<TBase>>
@@ -62,11 +71,11 @@ template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
 	public std::ranges::view_interface<all_pairs_view<TBase>>
 {
-    /* ... */
+private:
+	TBase _vw;
 	
+public:
 	constexpr all_pairs_view(TBase vw) : _vw{ std::move(vw) } { }
-    
-    /* ... */
 };
 
 template <class Rng>
@@ -142,14 +151,14 @@ private:
 	/* ... */
 	base_iterator _current_outer{};
 	base_iterator _current_inner{};
-	base_sentinel _base_end_cache{};
+	TBase const* _base{};
 
 	void correct_inner_if_needed();
 
 public:
 	/* ... */
 	inner_iterator() = default;
-	inner_iterator(all_pairs_view const& parent, base_iterator const& current_outer);
+	inner_iterator(TBase const& base, base_iterator current_outer);
 
 	[[nodiscard]] reference operator*() const;
 	inner_iterator& operator++();
@@ -174,7 +183,7 @@ private:
 
 	base_iterator _current_outer{};
 	base_iterator _current_inner{};
-	base_sentinel _base_end_cache{};
+	TBase const* _base{};
 
 	void correct_inner_if_needed()
 	{
@@ -192,10 +201,10 @@ public:
 
 	inner_iterator() = default;
 
-	inner_iterator(all_pairs_view const& parent, base_iterator const& current)
-		: _current_outer{ current }
-		, _current_inner{ std::ranges::begin(parent.base()) }
-		, _base_end_cache{ std::ranges::end(parent.base()) }
+	inner_iterator(TBase const& base, base_iterator current_outer)
+		: _current_outer{ std::move(current_outer) }
+		, _current_inner{ std::ranges::begin(base) }
+		, _base{ std::addressof(base) }
 	{
 		correct_inner_if_needed();
 	}

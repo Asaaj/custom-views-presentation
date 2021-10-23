@@ -1,30 +1,5 @@
 <section>
 
-```c++ [|6]
-class inner_sentinel
-{
-public:
-	[[nodiscard]] bool operator==(inner_sentinel const&) const
-	{
-		return true;
-	}
- 
-	[[nodiscard]] bool operator==(inner_iterator const& rhs) const
-	{
-		return rhs._current_inner == rhs._base_end_cache;
-	}
-
-    /* As of C++20, the compiler uses this^ to generate these:
-     *    sentinel != iterator
-     *    iterator == sentinel
-     *    iterator != sentinel
-     */
-};
-```
-
-</section>
-<section>
-
 ```c++ [8|9]
 template <std::ranges::view TBase> requires std::ranges::forward_range<TBase>
 class all_pairs_view :
