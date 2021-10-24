@@ -154,11 +154,6 @@ class outer_iterator
 </section>
 <section>
 
-[TODO: Slide about ownership and spooky action]
-
-</section>
-<section>
-
 ```c++ [|4,10]
 class outer_iterator
 {
