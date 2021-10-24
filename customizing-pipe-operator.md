@@ -57,6 +57,14 @@ inline constexpr detail::all_pairs_fn all_pairs;
 
 </div>
 
+<aside class="notes">
+
+An alternative (or at least broader) solution is proposed in P2011, which suggests a language-level piping operator. It 
+would have slightly different syntax, but it would allow piping the first argument of _any_ function rather than passing 
+it. 
+
+</aside>
+
 </section>
 <section>
 
