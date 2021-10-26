@@ -65,10 +65,6 @@ std::vector<bool> v{ true, true, false, true };
 
 <div class="hl-block">
 
-[comment]: <> (TODO: Very hard to read)
-
-[comment]: <> (TODO: Make this in markdown, that'll be much easier to maintain I think)
-
 <table class="cpp-ref-types">
 <tr>
     <th>Member type</th>
@@ -135,10 +131,6 @@ std::vector<bool> v{ true, true, false, true };
 <section>
 
 <div class="hl-block">
-
-[comment]: <> (TODO: Very hard to read)
-
-[comment]: <> (TODO: Make this in markdown, that'll be much easier to maintain I think)
 
 <table class="cpp-ref-types">
 <tr>

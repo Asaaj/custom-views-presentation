@@ -21,7 +21,11 @@
 
 I really like writing library code, but I'm not a maintainer of any big open-source projects or anything like that. 
 That's what I mean when I say "custom views for the rest of us"; I want to show that views are actually quite 
-approachable, even for those of us who don't do this kind of thing all the time.
+approachable, even for those of us who don't write this kind of code all the time.
+
+My goal, whenever I talk or teach, is to help build an intuition. Memorization is okay, but intuition is the only way 
+to really master something. To that end, my goal here is for everyone watching this talk to end up with a similar level 
+of understanding of views as I have, but in a much shorter time.
 
 </aside>
 
@@ -37,6 +41,9 @@ for (int i : iota(2) | filter(even) | transform(square))
 <div class="huge-text">🎉🎆🎊</div>
 
 <aside class="notes">
+
+If you don't know about views, this talk isn't really intended as an introduction, but I hope by the end of the talk you 
+will nevertheless understand them thoroughly.
 
 Here's an example of C++20's views in action. They offer this clean, composable, lazily-evaluated syntax for writing
 common algorithms, but when you first see them, they kind of look like magic. They have a very different syntax from 
