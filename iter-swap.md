@@ -196,57 +196,6 @@ public:
 </section>
 <section>
 
-```c++ [|11]
-class inner_iterator
-{
-private:
-	using base_value_type = std::ranges::range_value_t<TBase>;
-	using base_reference = std::ranges::range_reference_t<TBase>;
- 
-public:
-	using value_type = std::pair<base_value_type, base_value_type>;
-	using reference = std::pair<base_reference, base_reference>;
- 
-	friend constexpr auto iter_move(inner_iterator i)
-    {
-		return std::pair {
-			std::ranges::iter_move(i._current_outer),
-			std::ranges::iter_move(i._current_inner)
-		};
-    }
-};
-```
-
-</section>
-<section>
-
-<pre><code class="cpp" data-trim data-noescape data-line-numbers="|16-18">
-namespace std {
-
-// Exposition only:
-template &lt;class T>
-concept <i>__Referenceable</i> = // *std::declval&lt;T&>() has a referenceable type
-
-template &lt;class T>
-using iter_value_t = /* T::value_type, basically */;
- 
-template &lt;<i>__Referenceable</i> T>
-using iter_reference_t = decltype(*std::declval&lt;T&>());
- 
-template &lt;class T>
-using iter_difference_t = /* T::difference_type, basically */;
- 
-template &lt;<i>__Referenceable</i> T>
-	requires /* iter_move is valid */
-using iter_rvalue_reference_t = decltype(ranges::iter_move(std::declval&lt;T&>()));
-
-}
-
-</code></pre>
-
-</section>
-<section>
-
 ```c++ []
 class inner_iterator
 {

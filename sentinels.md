@@ -125,7 +125,7 @@ class inner_iterator
 		, _current_inner{ std::move(current_inner) }
 		, _base{ std::addressof(base) }
 	{
-		correct_inner_if_needed(); // Feels a bit like a lie...
+		correct_inner_if_needed(); // Should I even do this..?
 	}
     /* ... */
 };
