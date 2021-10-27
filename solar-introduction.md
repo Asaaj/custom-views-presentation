@@ -1,37 +1,5 @@
 <section>
 
-<div class="hl-block left-align">
-
-### About Me
-
-- Software Engineer at Keysight Technologies, Inc.
-- High Performance Oscilloscope Software Team
-- Contact: jacob.rice.cpp@gmail.com
-
-<center>
-    <img src="images/keysight-logo.png" width="400" style="margin-top: 30px"
-         alt="Keysight Technologies, Inc." />
-</center>
-
-</div>
-
-<aside class="notes">
-
-**Read slide**
-
-I really like writing library code, but I'm not a maintainer of any big open-source projects or anything like that. 
-That's what I mean when I say "custom views for the rest of us"; I want to show that views are actually quite 
-approachable, even for those of us who don't write this kind of code all the time.
-
-My goal, whenever I talk or teach, is to help build an intuition. Memorization is okay, but intuition is the only way 
-to really master something. To that end, my goal here is for everyone watching this talk to end up with a similar level 
-of understanding of views as I have, but in a much shorter time.
-
-</aside>
-
-</section>
-<section>
-
 ```c++ []
 using namespace std::views;
 for (int i : iota(2) | filter(even) | transform(square))
