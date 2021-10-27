@@ -2,7 +2,7 @@
     box-shadow: 0 0 7px #000000A0 !important;
     border-radius: 5px !important;
     padding: 10px !important;
-    background: #00495C;
+    background: #003A50;
     color: #EEE8D5;
 }
 
@@ -19,7 +19,7 @@
     box-shadow: 0 0 7px #000000A0 !important;
     border-radius: 5px !important;
     padding: 10px; /* TODO: Not "!important" because this was winning over .left-align */
-    background: #223D44;
+    background: #182B30;
     color: #EEE8D5;
 }
 
@@ -36,7 +36,7 @@
     box-shadow: 0 0 7px #000000A0 !important;
     border-radius: 5px !important;
     padding: 10px !important;
-    background: #00495C;
+    background: #003A50;
 }
 
 .reveal .aside-slide pre code:not(.fragment) {
@@ -44,7 +44,7 @@
     box-shadow: 0 0 7px #000000A0 !important;
     border-radius: 5px !important;
     padding: 10px !important;
-    background: #223D44;
+    background: #182B30;
 }
 
 /* Code fragments (i.e. the highlighted versions of a code block) don't get a shadow */
@@ -52,14 +52,14 @@
     max-height: 600px;
     border-radius: 5px !important;
     padding: 10px !important;
-    background: #00495C;
+    background: #003A50;
 }
 
 .reveal .aside-slide pre code.fragment {
     max-height: 600px;
     border-radius: 5px !important;
     padding: 10px !important;
-    background: #223D44;
+    background: #182B30;
 }
 
 /* Used for exposition-only concepts */
@@ -71,14 +71,14 @@ code i {
 .compare-columns code,
 div.hl-block p code,
 div.hl-block li code{
-    background-color: #003A49 !important;
+    background-color: #002B36 !important;
 }
 
 .aside-slide .compare-columns code,
 .aside-slide .cpp-ref-types code,
 .aside-slide div.hl-block p code,
 .aside-slide div.hl-block li code{
-    background-color: #182B30 !important;
+    background-color: #102328 !important;
 }
 
 /* Highlighted code lines also have shadow behind them */
